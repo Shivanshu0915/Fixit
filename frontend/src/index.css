@@ -1,0 +1,92 @@
+
+@import "tailwindcss";
+
+@theme {
+    /* ---------------- HOME PAGE Colors ------------*/
+    --color-pink1: #ffe2e2;
+    --color-pink2: #FFCCCC;
+    --color-pink3: #FFB8B8;
+    --color-pink3: #eed8b4;
+    --color-pink4 : #FFA3A3;
+    --color-logo-green: #004939;
+    --color-btn-green : #004939;
+    --color-green1: #00613B;
+    --color-orange1: #FF9D23;
+
+    /* ---Home BACKGROUND COLOR-----*/
+    --color-badami1 : #f5e8d3;
+    --color-badami2 : #e8c692;
+    --color-badami3 : #e6c793;
+    --color-badami4 : #a06e22;
+    --color-badami5 : #2f200a;
+    --color-badamidark : #191105;
+    --color-badamidarkl : #474137;
+
+    --color-badami6 : #2a1d09;
+    --color-btn-badami : #3f2c0e;
+
+
+    /* -------------- Login / SignUp--------------- */
+
+    --color-midnight: #121063;
+    --color-tahiti: #3ab7bf;
+    --color-bermuda: #78dcca;
+    --color-brown1 : #ede0d4;
+    --color-brown2 : #e6ccb2;
+    --color-brown3 : #ddb892;
+    --color-brown4 : #b08968;
+    --color-brown6 : #7f5539;
+    --color-brown5: #9c6644;
+
+
+    /* ---------- Students -------------------------*/
+    --color-midnight: #121063;
+    --color-tahiti: #3ab7bf;
+    --color-bermuda: #78dcca;
+    --color-stubgdark: #0E1113;
+    --color-stubgcard: #181C1F;
+    --color-stugreen: #32DE84;
+    --color-stured: #B01D1D; /* Removed extra comma */
+    --color-stumsg: #A06E22;
+    --color-btnblue: #0ba6ff;
+    --color-sidebarbtn: #dadadd;
+  
+
+  /* -----------------------------CUSTOM ANIMATION ----------------------------------*/
+
+  --animate-slideup: slideUp 1s ease-out;
+  @keyframes slideUp{
+      0% {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      100%{
+          opacity: 1;
+          transform: translateY(0);
+      }
+      
+  }
+
+}
+
+
+@utility scrollbar-webkit {
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #0E1113;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #181C1F; /* Use variable or hex code consistently */
+      border-radius: 50px;
+      border: 1px solid #484848;
+      transition: background-color 0.3s ease; /* Added missing unit */
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #33393F;
+      border: 1px solid #C0C0C0;
+    }
+  }
+
+
