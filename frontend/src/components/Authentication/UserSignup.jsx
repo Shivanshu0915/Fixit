@@ -90,7 +90,7 @@ export function UserSignup({moveToOtp}){
                 <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
                     Email
                 </label>
-                <input type="text" name="email" id="email" placeholder="Enter your email" className="w-full p-3 border rounded-md"
+                <input type="text" name="email" id="email" placeholder="Enter your official college email (e.g., student@mnnit.ac.in)" className="w-full p-3 border rounded-md"
                 onChange={handleChange} required/>
             </div>
             <div className="mb-3">

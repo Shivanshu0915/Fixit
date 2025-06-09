@@ -1,10 +1,10 @@
 import axios from "axios";
-import {toast} from "react-toastify";
-import {useNavigate} from "react-router-dom";
+// import {toast} from "react-toastify";
+// import {useNavigate} from "react-router-dom";
 
 export const LoginHandler = async (props)=>{
-    const navigate = useNavigate();
-    console.log(props);
+    // const navigate = useNavigate();
+    // console.log(props);
     try{
         const response = await axios.post("http://localhost:3000/auth/login", props, {
             headers : {
@@ -21,13 +21,15 @@ export const LoginHandler = async (props)=>{
         // Store decoded values
         sessionStorage.setItem("accessToken", accessToken);
         sessionStorage.setItem("role", role);
-        toast.success("Logged in successfully!");
-        // window.location.href = response.data.role === "user" ? "/studentDashboard" : "/adminDashboard";
-        navigate(response.data.role === "user" ? "/studentDashboard" : "/adminDashboard");
+        // toast.success("Logged in successfully!");
+        alert("Logged in successfully!");
+        window.location.href = response.data.role === "user" ? "/studentDashboard" : "/adminDashboard";
+        // navigate(response.data.role === "user" ? "/studentDashboard" : "/adminDashboard");
 
     }
     catch(error){
         console.error("Error in logging in: ", error);
-        toast.error("Login Failed! Check your credentials.")
+        // toast.error("Login Failed! Check your credentials.")
+        alert("Login Failed! Check your credentials.")
     }
 }

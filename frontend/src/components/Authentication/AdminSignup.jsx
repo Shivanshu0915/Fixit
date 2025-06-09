@@ -34,7 +34,8 @@ export function AdminSignup({ moveToOtp }) {
         phone: "",
         email: "",
         password: "",
-        document: null
+        document: null,
+        domain: "",
     });
 
     useEffect(() => {
@@ -186,6 +187,14 @@ export function AdminSignup({ moveToOtp }) {
                     Email
                 </label>
                 <input  type="text" name="email" id="email" placeholder="Enter your email" className="w-full p-3 border rounded-md" 
+                    onChange={handleChange} required/>
+            </div>
+            <div className="mb-2">
+                <label htmlFor="domain" className="block text-gray-700 font-medium mb-2">
+                    College domain
+                </label>
+                <input  type="text" name="domain" id="domain" placeholder="Enter official email domain (e.g., mnnit.ac.in)"
+                 className="w-full p-3 border rounded-md" 
                     onChange={handleChange} required/>
             </div>
             <div className="mb-3">

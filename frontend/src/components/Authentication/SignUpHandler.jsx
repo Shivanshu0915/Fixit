@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ErrorMsg } from "./AuthErrorMsgs";
-import {toast } from "react-toastify"
+// import {toast } from "react-toastify"
 
 export const UserSignUpHandler = async (props, moveToOtp) => {
     console.log(props);
@@ -10,7 +10,7 @@ export const UserSignUpHandler = async (props, moveToOtp) => {
                 "Content-Type": "application/json",
             },
         });
-        toast.success("Redirecting to OTP page!");
+        alert("Redirecting to OTP page!");
         moveToOtp(props.email);
     } 
     catch (error) {
@@ -26,7 +26,7 @@ export const AdminSignUpHandler = async (props, moveToOtp) => {
         });
 
         const response = await axios.post("http://localhost:3000/auth/signup",signupObject);
-        toast.success("Redirecting to OTP page!");
+        alert("Redirecting to OTP page!");
         moveToOtp(props);
     } 
     catch(error) {
@@ -54,18 +54,19 @@ export const OtpHandler = async ({isAdmin, formData, otp, onFailure, navigate, i
     try{
         const response = await axios.post(path, props);
         if(isResend === true){
-            toast.success("OTP resent successfully!") 
+            // toast.success("OTP resent successfully!") 
+            alert("OTP resent successfully!") 
             return;
         }
         else{
             if(isAdmin){
-                toast.success("Otp verified successfully!")
+                alert("Otp verified successfully!")
                 const response = await axios.post("http://localhost:3000/auth/admin-signup-request", formData);
-                toast.info("Waiting for approval. Check  your email");
+                alert("Waiting for approval. Check  your email");
                 navigate("/");
             }
             else{
-                toast.success("User signed up successfully! Login to continue.");
+                alert("User signed up successfully! Login to continue.");
                 navigate("/login")
             }
             return;
