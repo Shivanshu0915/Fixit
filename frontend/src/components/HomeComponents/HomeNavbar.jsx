@@ -3,15 +3,6 @@ import { Link } from 'react-router-dom';
 import VerticalNavbar from './VerticalNav';
 
 export function HomeNavbar(){
-    // const btnEffect = async(event) => {
-    //     const div = event.target; // Get the clicked div
-    //     div.style.transform = "scale(0.9)"; // Shrink effect
-
-    //     setTimeout(() => {
-    //         div.style.transform = "scale(1)"; // Restore size
-    //     }, 10);
-    // };
-
     return(
         <>
         <nav className="sticky w-full flex justify-between items-center px-8 py-4 top-0 bg-badami1/80 backdrop-blur-sm z-50">

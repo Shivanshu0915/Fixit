@@ -11,15 +11,11 @@ export function AdminSignup({ moveToOtp }) {
     const [selectedHostel, setSelectedHostel] = useState("");
     const [customHostel, setCustomHostel] = useState("");
 
-    const [categories, setCategories] = useState([
-        "Mess", "Hostel", "Warden", "Chief Warden"
-    ]);
+    const [categories, setCategories] = useState(["Mess", "Hostel", "Warden", "Chief Warden"]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [customCategory, setCustomCategory] = useState("");
 
-    const [positions, setPositions] = useState([
-        "Mess Manager", "Store Keeper", "Caretaker", "Technician"
-    ]);
+    const [positions, setPositions] = useState(["Mess Manager", "Store Keeper", "Caretaker", "Technician"]);
     const [selectedPosition, setSelectedPosition] = useState("");
     const [customPosition, setCustomPosition] = useState("");
 
@@ -120,7 +116,7 @@ export function AdminSignup({ moveToOtp }) {
                 </select>
                 {selectedCollege === "custom" && (
                     <input type="text" name="customCollege" placeholder="Enter college name" className="w-full p-3 border rounded-md mt-2" value={customCollege}
-                        onChange={(e) => handleCustomInputChange(e, setCustomCollege, "college")} required/>
+                    onChange={(e) => handleCustomInputChange(e, setCustomCollege, "college")} required/>
                 )}
             </div>
 

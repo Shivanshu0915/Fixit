@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { authController, optionController, superAdminController } = require("../controller");
-const { requestOtp, verifyOtp, resendOtp } = authController;
+const { requestOtp, verifyOtp, resendOtp, login, refreshToken, logout} = authController;
 const { getCollege, addCollege, getHostel, addHostel} = optionController;
 const { adminSignupRequest, rejectSignup, acceptSignup } = superAdminController;
 
@@ -9,6 +9,11 @@ const { adminSignupRequest, rejectSignup, acceptSignup } = superAdminController;
 router.post("/signup", requestOtp);
 router.post("/verify-otp", verifyOtp);
 router.post("/resend-otp", resendOtp);
+
+router.post("/login", login);
+router.post("/refresh", refreshToken);
+router.post("/logout", logout);
+
 
 // optionController
 router.get("/get-college", getCollege);

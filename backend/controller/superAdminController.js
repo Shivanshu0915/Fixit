@@ -30,10 +30,8 @@ const adminSignupRequest = async (req, res) => {
             if (existingPending) {
                 return res.status(400).json({ msg: "A signup request for this email is already pending." });
             }
-
             // ✅ Proceed to store the pending request
             const hashedPassword = await bcrypt.hash(password, 10);
-
             const newPending = new PendingAdmin({
                 isAdmin,
                 name,
@@ -47,7 +45,6 @@ const adminSignupRequest = async (req, res) => {
                 document: documentPath,
                 domain
             });
-
             await newPending.save();
 
             // Read file contents (if file is uploaded)
@@ -81,7 +78,7 @@ const adminSignupRequest = async (req, res) => {
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
                     console.error("Error sending email:", err);
-                    // Optionally, you may decide not to delete the file in case of email errors
+                    return res.status(500).json({ error: "Failed to send signup request email. Please try again later." });
                 } else {
                     console.log("Email sent:", info.response);
                 }
@@ -108,7 +105,6 @@ const adminSignupRequest = async (req, res) => {
 // API: Approve Admin
 const acceptSignup = async (req, res) => {
     const { email } = req.params;
-
     const pending = await PendingAdmin.findOne({ email });
     if (!pending) return res.status(400).json({ error: 'Pending admin not found' });
 
@@ -124,7 +120,6 @@ const acceptSignup = async (req, res) => {
         email: pending.email,
         password: pending.password,
     });
-
     await newAdmin.save();
 
     // Ensure college/hostel are saved
@@ -144,35 +139,32 @@ const acceptSignup = async (req, res) => {
     const mailOptions = {
         from: process.env.EMAIL_USER.trim(),
         to: email,
-        subject: 'Your Admin Signup is Approved!',
-        html: `<p>Your admin account for ${pending.college} has been approved. You can now login.</p>`
+        subject: 'Your Super Admin Signup is Approved!',
+        html: `<p>Your admin account for ${pending.college} at Fixit has been approved. You can now login to continue.</p>`
     };
     transporter.sendMail(mailOptions);
 
     // Delete pending entry
     await PendingAdmin.deleteOne({ email });
-    
-    res.send('Admin approved successfully.');
+    res.send('Admin request approved successfully.');
 };
 
 // API: Reject Admin
 const rejectSignup = async (req, res) => {
     const { email } = req.params;
-    
     const pending = await PendingAdmin.findOne({ email });
     if (!pending) return res.status(400).json({ error: 'Pending admin not found' });
-
-    await PendingAdmin.deleteOne({ email });
-
+    
     // Send rejection email to admin
     const mailOptions = {
         from: process.env.EMAIL_USER.trim(),
         to: email,
-        subject: 'Your Admin Signup is Rejected',
-        html: `<p>Your request to register as an admin has been rejected.</p>`
+        subject: 'Your Admin Signup is Rejected!',
+        html: `<p>Your request to register as a super admin for ${pending.college} at Fixit has been rejected.</p>`
     };
     transporter.sendMail(mailOptions);
-    res.send('Admin rejected.');
+    await PendingAdmin.deleteOne({ email });
+    res.send('Admin request rejected.');
 }
 
 module.exports = {
