@@ -34,7 +34,6 @@ export function UserSignup({moveToOtp}){
           [name]: value, // Update only the changed field
         }));
     };
-    
     const handleSubmit = async(e)=>{
         e.preventDefault();
         await UserSignUpHandler(userSignupData, moveToOtp);
@@ -52,7 +51,7 @@ export function UserSignup({moveToOtp}){
             <div className="mb-2">
                 <label className="block text-gray-700 font-medium mb-2">College</label>
                 <select name="college" id="college" className="w-full p-3 border rounded-md"
-                onChange={handleChange} required>
+                onChange={handleChange} >
                     <option value="">Select your college</option>
                     {colleges.map(college => (
                         <option key={college} value={college}>{college}</option>
@@ -64,7 +63,7 @@ export function UserSignup({moveToOtp}){
             <div className="mb-2">
                 <label className="block text-gray-700 font-medium mb-2">Hostel</label>
                 <select name="hostel" id="hostel" className="w-full p-3 border rounded-md"
-                onChange={handleChange} required>
+                onChange={handleChange} >
                     <option value="">Select your hostel</option>
                     {hostels.map(hostel => (
                         <option key={hostel} value={hostel}>{hostel}</option>
