@@ -6,6 +6,7 @@ import OTPPage from "./routes/OTP.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import { StudentMain } from "./routes/Students/StudentMain.jsx";
 import { StuMidFirst } from "./components/StudentComponents/StuMidMain.jsx";
+import { FileComplaint } from "./routes/Students/FileComplaint.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
@@ -18,6 +19,8 @@ const App = createBrowserRouter(
             {/* Group all student routes under a parent route */}
             <Route path="/studentDashboard" element={<ProtectedRoute allowedRole="user"><StudentMain /></ProtectedRoute>}>
                 <Route index element={ <ProtectedRoute allowedRole="user"> <StuMidFirst /></ProtectedRoute>}/>
+                <Route path="hostel" element={ <ProtectedRoute allowedRole="user"> <StuMidFirst /></ProtectedRoute>}/>
+                <Route path="file-complaint" element={<ProtectedRoute allowedRole="user"><FileComplaint/></ProtectedRoute>}/>
             </Route>
         </>
     )
