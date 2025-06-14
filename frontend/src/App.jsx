@@ -7,6 +7,7 @@ import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import { StudentMain } from "./routes/Students/StudentMain.jsx";
 import { StuMidFirst } from "./components/StudentComponents/StuMidMain.jsx";
 import { FileComplaint } from "./routes/Students/FileComplaint.jsx";
+import UserProfileDashboard from "./routes/Students/Profile.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
@@ -22,6 +23,7 @@ const App = createBrowserRouter(
                 <Route path="hostel" element={ <ProtectedRoute allowedRole="user"> <StuMidFirst /></ProtectedRoute>}/>
                 <Route path="file-complaint" element={<ProtectedRoute allowedRole="user"><FileComplaint/></ProtectedRoute>}/>
             </Route>
+            <Route path="/studentDashboard/profile" element={<ProtectedRoute allowedRole="user"><UserProfileDashboard /></ProtectedRoute>}/>
         </>
     )
 );
