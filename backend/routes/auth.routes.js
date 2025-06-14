@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { authController, optionController, superAdminController } = require("../controller");
+const { getInfo } = require("../controller/authController");
 const { requestOtp, verifyOtp, resendOtp, login, refreshToken, logout} = authController;
 const { getCollege, addCollege, getHostel, addHostel} = optionController;
 const { adminSignupRequest, rejectSignup, acceptSignup } = superAdminController;
@@ -25,5 +26,8 @@ router.post("/add-hostel", addHostel)
 router.post("/admin-signup-request", adminSignupRequest);
 router.get("/approve-admin/:email", acceptSignup);
 router.get("/reject-admin/:email", rejectSignup);
+
+// get info
+router.get("/get-info", getInfo);
 
 module.exports = router;

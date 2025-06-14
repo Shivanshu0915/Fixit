@@ -190,11 +190,48 @@ const resendOtp = async (req, res) => {
     res.json({ msg: "New OTP sent successfully!" });
 };
 
+const getInfo = async(req, res) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Access token missing or invalid' });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.ACCESS_JWT_TOKEN_SECRET);
+        const { id, role } = decoded;
+
+        let result;
+        if (role === 'user') {
+            result = await StudentData.findById(id).select('college hostel');
+        } else if (role === 'admin') {
+            result = await AdminData.findById(id).select('college hostel');
+        } else {
+            return res.status(400).json({ error: 'Invalid role' });
+        }
+
+        if (!result) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({
+            college: result.college,
+            hostel: result.hostel,
+            id : result._id
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(403).json({ error: 'Invalid or expired token' });
+    }
+}
+
 module.exports = {
     requestOtp,
     verifyOtp,
     resendOtp,
     login,
     logout,
-    refreshToken
+    refreshToken,
+    getInfo
 }

@@ -15,8 +15,20 @@ const ComplaintSchema = new mongoose.Schema({
 
 // Index for efficient sorting
 ComplaintSchema.index({ category: 1, datePosted: -1 });
+
+const VoteSchema = new mongoose.Schema({
+    studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'registered students', required: true, index: true },
+    complaintId: { type: mongoose.Schema.Types.ObjectId, ref: 'complaints', required: true, index: true },
+    voteType: { type: Number, enum: [1, -1], required: true } // 1 = upvote, -1 = downvote
+});
+
+// Ensure a student can vote only once per complaint
+VoteSchema.index({ studentId: 1, complaintId: 1 }, { unique: true });
+
 const ComplaintData = mongoose.model('complaints', ComplaintSchema);
+const VoteData = mongoose.model('votes', VoteSchema);
 
 module.exports = { 
     ComplaintData,
+    VoteData,
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { MediaDisplay } from "./MediaDisplay";
+import { getAccessToken } from "../Authentication/RefreshToken";
 
 export function StuComplaintDataCard({ props }) {
     const[isUpvoted, setIsUpvoted] = useState(false);
@@ -15,8 +17,10 @@ export function StuComplaintDataCard({ props }) {
         student  
     } = props;
 
+    // console.log("media ", media);
     const [upvoteCount, setUpvoteCount] = useState(upvotes);
     const [downvoteCount, setDownvoteCount] = useState(downvotes);
+    const [userVote, setUserVote] = useState(null); 
 
     // Format date (e.g., "16 Mar 2025")
     const formattedDate = new Date(datePosted).toLocaleDateString("en-GB", {
@@ -24,6 +28,75 @@ export function StuComplaintDataCard({ props }) {
         month: "short",
         year: "numeric"
     });
+
+    useEffect(() => {
+        const fetchUserVote = async () => {
+            try {
+                let accessToken ;
+                const result = await getAccessToken();
+                if(!result.token){
+                    alert("Session expired! Login again to continue");
+                    window.location.href = "/login";
+                    return;
+                }
+                else    accessToken = result.token;
+
+                const response = await axios.get(`http://localhost:3000/user/get-user-vote/${_id}`,
+                    { headers: { Authorization: `Bearer ${accessToken}` } }
+                );
+                // ✅ Set upvote/downvote states based on fetched userVote
+                if (response.data.success) {
+                    setUserVote(response.data.userVote);
+                    setIsUpvoted(response.data.userVote === 1);
+                    setIsDownvoted(response.data.userVote === -1);
+                }
+
+            } catch (error) {
+                console.error("Error fetching user vote:", error);
+            }
+        };
+        fetchUserVote();
+    }, [_id]);
+
+    const handleVote = async (type) => {
+        try {
+            let accessToken ;
+            const result = await getAccessToken();
+            if(!result.token){
+                alert("Session expired! Login again to continue");
+                window.location.href = "/login";
+                return;
+            }
+            else    accessToken = result.token;
+
+            const response = await axios.post(
+                `http://localhost:3000/user/vote-complaint`,
+                { complaintId: _id, voteType: userVote === type ? 0 : type }, // Toggle vote
+                { headers: { Authorization: `Bearer ${accessToken}` } }
+            );
+            if (response.data.success) {
+                setUpvoteCount(response.data.upvotes);
+                setDownvoteCount(response.data.downvotes);
+                setUserVote(response.data.userVote);
+            }
+            if(type === 1){
+                if((!isDownvoted && !isUpvoted) || (isUpvoted))    setIsUpvoted(!isUpvoted);
+                else if(isDownvoted && !isUpvoted){
+                    setIsDownvoted(!isDownvoted);
+                    setIsUpvoted(!isUpvoted);
+                }
+            }
+            if(type === -1){
+                if((!isUpvoted && !isDownvoted) || (isDownvoted))    setIsDownvoted(!isDownvoted);
+                else if(isUpvoted && !isDownvoted){
+                    setIsDownvoted(!isDownvoted);
+                    setIsUpvoted(!isUpvoted);
+                }
+            }
+        } catch (error) {
+            console.error("Error voting:", error);
+        }
+    };
 
     return (
         <div className="bg-stubgcard w-full h-auto px-3 py-2 rounded-lg shadow-sm shadow-gray-700">
@@ -55,7 +128,8 @@ export function StuComplaintDataCard({ props }) {
                         <div className="text-white text-sm bg-[#283034] pl-2 pr-1 rounded-l-lg py-1">
                             {upvoteCount}
                         </div>
-                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer " >
+                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer " 
+                        onClick={() => handleVote(1)}>
                             {(isUpvoted && !isDownvoted) ? (
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="white"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-up">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 20v-8h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v8a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
@@ -74,7 +148,8 @@ export function StuComplaintDataCard({ props }) {
                         <div className="text-white text-sm bg-[#2A3236] pl-2 pr-1 rounded-l-lg py-1">
                             {downvoteCount}
                         </div>
-                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer">
+                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer" 
+                        onClick={() => handleVote(-1)}>
                             {isDownvoted ? (
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="white"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-down">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4v8h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1 -1.414 0l-6.586 -6.586a1 1 0 0 1 .707 -1.707h3.586v-8a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1z" />

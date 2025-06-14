@@ -1,14 +1,130 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { FilterDropdown } from "./Dropdown.jsx";
-import { Link} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+import { getAccessToken } from "../Authentication/RefreshToken.jsx";
 import { QuickActionsCard } from "./QuickActions.jsx";
 import { StuComplaintDataCard } from "./ComplaintCard.jsx";
 
 export function StuMidFirst() {
+    const location = useLocation();
     const containerRef = useRef(null);
     const [complaints, setComplaints] = useState([]);
+    const [nextCursor, setNextCursor] = useState(null);
     const [isFetching, setIsFetching] = useState(false);
     const [sortBy, setSortBy] = useState("newest");
+    const [hasMore, setHasMore] = useState(true);
+
+    const [category, setCategory] = useState(
+        location.pathname === "/studentDashboard/hostel" ? "hostel" : "mess"
+    );
+
+    useEffect(() => {
+        const newCategory = location.pathname === "/studentDashboard/hostel" ? "hostel" : "mess";
+        if (newCategory !== category) {
+            setCategory(newCategory);
+            setComplaints([]);
+            setNextCursor(null);
+            setHasMore(true);
+        }
+    }, [location.pathname, category]);
+
+    useEffect(() => {
+        setComplaints([]);
+        setNextCursor(null);
+        setHasMore(true);
+    }, [sortBy]);
+
+    const fetchComplaints = useCallback(async () => {
+        if (isFetching || !hasMore) return;
+        setIsFetching(true);
+
+        try {
+            const result = await getAccessToken();
+            if (!result.token) {
+                alert("Session expired! Login again to continue");
+                window.location.href = "/login";
+                return;
+            }
+            // getting college and hostel info 
+            const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+                headers: { Authorization: `Bearer ${result.token}` },
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                const params = {
+                    category,
+                    college: data.college,
+                    hostel: data.hostel,
+                    sortBy,
+                    limit: 10,
+                };
+                // Add cursor and vote info for pagination
+                if (nextCursor) {
+                    params.cursor = nextCursor.cursor;
+                    if (sortBy === "mostUpvoted") {
+                        params.lastUpvotes = nextCursor.lastUpvotes;
+                    } else if (sortBy === "mostDownvoted") {
+                        params.lastDownvotes = nextCursor.lastDownvotes;
+                    }
+                }
+
+                const response = await axios.get(
+                    "http://localhost:3000/user/fetch-complaint",
+                    {
+                        params,
+                        headers: { Authorization: `Bearer ${result.token}` },
+                        withCredentials: true,
+                    }
+                );
+
+                const newComplaints = response.data.complaints;
+
+                if (nextCursor) {
+                    setComplaints((prev) => [...prev, ...newComplaints]);
+                } else {
+                    setComplaints(newComplaints);
+                }
+
+                setNextCursor(response.data.nextCursor);
+                setHasMore(!!response.data.nextCursor && newComplaints.length > 0);
+            }
+        } catch (error) {
+            console.error("Error fetching complaints:", error);
+        } finally {
+            setIsFetching(false);
+        }
+    }, [category, sortBy, nextCursor, isFetching, hasMore]);
+
+    useEffect(() => {
+        if (complaints.length === 0 && !isFetching && hasMore) {
+            fetchComplaints();
+        }
+    }, [complaints, isFetching,hasMore, fetchComplaints]);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+        let debounceTimer;
+
+        const handleScroll = () => {
+            if (debounceTimer) clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const { scrollTop, scrollHeight, clientHeight } = container;
+                const threshold = scrollHeight - clientHeight - 100;
+                if (scrollTop >= threshold && nextCursor && !isFetching) {
+                    fetchComplaints();
+                }
+            }, 150);
+        };
+
+        container.addEventListener("scroll", handleScroll);
+        return () => {
+            container.removeEventListener("scroll", handleScroll);
+            clearTimeout(debounceTimer);
+        };
+    }, [nextCursor, isFetching, fetchComplaints]);
 
     return (
         <div className="flex w-full">
