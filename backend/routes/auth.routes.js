@@ -5,6 +5,9 @@ const { getInfo } = require("../controller/authController");
 const { requestOtp, verifyOtp, resendOtp, login, refreshToken, logout} = authController;
 const { getCollege, addCollege, getHostel, addHostel} = optionController;
 const { adminSignupRequest, rejectSignup, acceptSignup } = superAdminController;
+const authenticateUser = require("../middlewares/authenticateUser");
+
+const { changeProfilePass } = require('../controller/user');
 
 // authController
 router.post("/signup", requestOtp);
@@ -29,5 +32,8 @@ router.get("/reject-admin/:email", rejectSignup);
 
 // get info
 router.get("/get-info", getInfo);
+
+// for changing profile pass
+router.put("/change-profile-password", authenticateUser, changeProfilePass);
 
 module.exports = router;

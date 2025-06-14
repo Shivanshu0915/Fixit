@@ -8,11 +8,12 @@ import { StudentMain } from "./routes/Students/StudentMain.jsx";
 import { StuMidFirst } from "./components/StudentComponents/StuMidMain.jsx";
 import { FileComplaint } from "./routes/Students/FileComplaint.jsx";
 import UserProfileDashboard from "./routes/Students/Profile.jsx";
+import RedirectHandler from "./components/Authentication/RedirectHandler.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
         <>
-            <Route path="/" element={<><Home/></>} />
+            <Route path="/" element={<><RedirectHandler/><Home/></>} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/otpPage" element={<OTPPage />} />

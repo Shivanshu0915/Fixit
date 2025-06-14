@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router";
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { getAccessToken } from "../Authentication/RefreshToken";
 import ChangePasswordModal from "./ChangePasswordModal";
+import { jwtDecode } from "jwt-decode";
 
 export function QuickActionsCard(){
     const navigate = useNavigate();
@@ -23,6 +25,39 @@ export function QuickActionsCard(){
             console.error("Logout failed:", error);
         }
     };
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            const result = await getAccessToken();
+            if (!result.token) {
+                alert("Session expired. Please log in again.");
+                window.location.href = "/login";
+                return;
+            }
+
+            try {
+                const decoded = jwtDecode(result.token);
+                if (decoded.role) {
+                    setRole(decoded.role);
+                }
+                const path = (decoded.role == "admin" ? "http://localhost:3000/admin/profile" : "http://localhost:3000/user/profile")
+                const res = await fetch(path, {
+                    headers: {
+                    Authorization: `Bearer ${result.token}`,
+                    },
+                });
+
+                if (!res.ok) throw new Error("Failed to fetch user info");
+                const data = await res.json();
+
+                setProfileImage(data.profileImage || null);
+            } catch (err) {
+                console.error("Error fetching user info:", err);
+            }
+        };
+
+        fetchUserInfo();
+    }, []);
 
     return(
         <div className="flex flex-col w-full h-full justify-between bg-stubgcard p-2">
