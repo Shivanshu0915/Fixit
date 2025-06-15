@@ -10,6 +10,9 @@ import { FileComplaint } from "./routes/Students/FileComplaint.jsx";
 import UserProfileDashboard from "./routes/Students/Profile.jsx";
 import RedirectHandler from "./components/Authentication/RedirectHandler.jsx";
 
+import { AdminMain } from "./routes/Authorities/AdminMain.jsx";
+import { AdminMidMain } from "./components/Admin Components/AdminMidMain.jsx";
+
 const App = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -25,6 +28,12 @@ const App = createBrowserRouter(
                 <Route path="file-complaint" element={<ProtectedRoute allowedRole="user"><FileComplaint/></ProtectedRoute>}/>
             </Route>
             <Route path="/studentDashboard/profile" element={<ProtectedRoute allowedRole="user"><UserProfileDashboard /></ProtectedRoute>}/>
+
+            {/* Group all admin routes under a parent route */}
+            <Route path="/adminDashboard" element={<ProtectedRoute allowedRole="admin"><AdminMain /></ProtectedRoute>}>
+                <Route index element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
+                <Route path="hostel" element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
+            </Route>
         </>
     )
 );
