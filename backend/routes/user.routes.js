@@ -12,7 +12,8 @@ const {
     voteComplaints,
     getStudProfileData,
     updateStuProfileData,
-    uploadStuProfileImage
+    uploadStuProfileImage,
+    getMessMenu
 
 } = require('../controller/user');
 
@@ -30,5 +31,8 @@ router.post("/vote-complaint", voteComplaints);
 router.get("/profile", authenticateUser, getStudProfileData)
 router.put("/profile-update-data", authenticateUser, updateStuProfileData)
 router.post("/upload-profile-image", authenticateUser, upload3.single("image"), uploadStuProfileImage)
+
+// mess routes
+router.get("/mess/menu", getMessMenu);
 
 module.exports = router;
