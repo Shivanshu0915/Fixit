@@ -1,15 +1,17 @@
 const express = require("express");
 const authenticateUser = require("../middlewares/authenticateUser");
 const router = express.Router();
+const upload2 = require("../config/messMenuMulter");
 const upload3 = require("../config/profileImageMulter");
 
 const {
     resolveComplaint,
     getAdminProfileData,
     updateAdminProfileData,
-    uploadAdminProfileImage
-} = require("../controller/admin");
+    uploadAdminProfileImage,
+    uploadMessMenu,
 
+} = require("../controller/admin");
 
 // complaints related
 router.patch("/resolve-complaint/:id", authenticateUser, resolveComplaint)
@@ -18,5 +20,8 @@ router.patch("/resolve-complaint/:id", authenticateUser, resolveComplaint)
 router.get("/profile", authenticateUser, getAdminProfileData)
 router.put("/profile/update-data", authenticateUser, updateAdminProfileData)
 router.post("/profile/upload-image", authenticateUser, upload3.single("image"), uploadAdminProfileImage)
+
+// mess related
+router.post("/mess/upload-menu", authenticateUser, upload2.single('menuImage'), uploadMessMenu);
 
 module.exports = router;
