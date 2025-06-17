@@ -12,6 +12,7 @@ import RedirectHandler from "./components/Authentication/RedirectHandler.jsx";
 
 import { AdminMain } from "./routes/Authorities/AdminMain.jsx";
 import { AdminMidMain } from "./components/Admin Components/AdminMidMain.jsx";
+import AdminProfileDashboard from "./routes/Authorities/AdminProfile.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
@@ -34,6 +35,7 @@ const App = createBrowserRouter(
                 <Route index element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
                 <Route path="hostel" element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
             </Route>
+            <Route path="/adminDashboard/profile" element={<ProtectedRoute allowedRole="admin"><AdminProfileDashboard /></ProtectedRoute>}/>
         </>
     )
 );
