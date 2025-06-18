@@ -16,6 +16,7 @@ import AdminProfileDashboard from "./routes/Authorities/AdminProfile.jsx";
 import { AdminMessMenu } from "./routes/Authorities/AdminMessMenu.jsx";
 import { MessMenu } from "./routes/Students/MessMenu.jsx";
 import MealRatingHub from "./routes/Students/MealRating.jsx";
+import MealRatingsDashboard from "./routes/Authorities/MealRatingsDashboard.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
@@ -40,6 +41,7 @@ const App = createBrowserRouter(
                 <Route index element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
                 <Route path="hostel" element={ <ProtectedRoute allowedRole="admin"> <AdminMidMain /></ProtectedRoute>}/>
                 <Route path="mess-menu" element={<ProtectedRoute allowedRole="admin"><AdminMessMenu /></ProtectedRoute>}/>
+                <Route path="meal-ratings-data" element={<ProtectedRoute allowedRole="admin"><MealRatingsDashboard /></ProtectedRoute>}/>
             </Route>
             <Route path="/adminDashboard/profile" element={<ProtectedRoute allowedRole="admin"><AdminProfileDashboard /></ProtectedRoute>}/>
         </>

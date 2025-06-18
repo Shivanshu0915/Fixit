@@ -10,7 +10,8 @@ const {
     updateAdminProfileData,
     uploadAdminProfileImage,
     uploadMessMenu,
-
+    getMealRatingsSummary,
+    
 } = require("../controller/admin");
 
 // complaints related
@@ -23,5 +24,6 @@ router.post("/profile/upload-image", authenticateUser, upload3.single("image"), 
 
 // mess related
 router.post("/mess/upload-menu", authenticateUser, upload2.single('menuImage'), uploadMessMenu);
+router.get("/mess/meal-ratings", getMealRatingsSummary)
 
 module.exports = router;
