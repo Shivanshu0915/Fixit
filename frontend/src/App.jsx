@@ -17,6 +17,7 @@ import { AdminMessMenu } from "./routes/Authorities/AdminMessMenu.jsx";
 import { MessMenu } from "./routes/Students/MessMenu.jsx";
 import MealRatingHub from "./routes/Students/MealRating.jsx";
 import MealRatingsDashboard from "./routes/Authorities/MealRatingsDashboard.jsx";
+import TrackComplaint from "./routes/Students/TrackComplaint.jsx";
 
 const App = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +34,7 @@ const App = createBrowserRouter(
                 <Route path="file-complaint" element={<ProtectedRoute allowedRole="user"><FileComplaint/></ProtectedRoute>}/>
                 <Route path="mess-menu" element={<ProtectedRoute allowedRole="user"><MessMenu /></ProtectedRoute>}/>
                 <Route path="rate-meal" element={<ProtectedRoute allowedRole="user"><MealRatingHub /></ProtectedRoute>}/>
+                <Route path="track-complaint" element={<ProtectedRoute allowedRole="user"><TrackComplaint /></ProtectedRoute>}/>
             </Route>
             <Route path="/studentDashboard/profile" element={<ProtectedRoute allowedRole="user"><UserProfileDashboard /></ProtectedRoute>}/>
 

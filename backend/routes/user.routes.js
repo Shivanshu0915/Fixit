@@ -16,6 +16,9 @@ const {
     getMessMenu,
     createMealRatings,
     getRatingsStu,
+    searchById,
+    browseByFilter,
+    complaintsStats,
 
 } = require('../controller/user');
 
@@ -38,5 +41,10 @@ router.post("/upload-profile-image", authenticateUser, upload3.single("image"), 
 router.get("/mess/menu", getMessMenu);
 router.get("/mess/meal-ratings", getRatingsStu)
 router.post("/mess/create-meal-ratings", createMealRatings);
+
+// track complaint routes
+router.get("/complaint-search-by-id", searchById)
+router.get("/complaint-browse-by-filter", browseByFilter)
+router.get("/complaints-statistics", complaintsStats)
 
 module.exports = router;
