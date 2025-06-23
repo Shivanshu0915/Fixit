@@ -99,24 +99,24 @@ export function StuComplaintDataCard({ props }) {
     };
 
     return (
-        <div className="bg-stubgcard w-full h-auto px-3 py-2 rounded-lg shadow-sm shadow-gray-700">
+        <div className="bg-stubgcard w-full h-auto px-3 py-2 rounded-lg shadow-md shadow-compcardshadow">
             {/* Author details  */}
-            <div className="text-[#b9babb] text-lg px-2 pt-1 pb-2 border-b-[1px] border-gray-500 h-auto bg-stubgcard gap-x-4">
+            <div className="text-compcardsecondary text-lg px-2 pt-1 pb-2 border-b-[1px] border-dashborder h-auto bg-stubgcard gap-x-4">
                  {student.name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ")},&nbsp;({student.regNo})
             </div>
 
             {/* Title and text content*/}
             <div className="p-2 pb-5 bg-stubgcard">
-                 <div className="text-[#e7e8e8] font-medium text-2xl py-2">
+                 <div className="text-compcardprimary font-semibold text-2xl py-2">
                      {title}
                  </div>
-                 <div className="text-[#b9babb] py-2">
+                 <div className="text-compcardsecondary py-2">
                      {text}
                  </div>
             </div>
             
             {/* Media  */}
-            <div className="p-2 border-b-[1px] border-gray-500">
+            <div className="p-2 border-b-[1px] border-dashborder">
                 <MediaDisplay media={media} />
             </div>
 
@@ -125,10 +125,10 @@ export function StuComplaintDataCard({ props }) {
                 <div className="flex gap-x-3">
                     {/* Upvote  */}
                     <div className="flex items-center ">
-                        <div className="text-white text-sm bg-[#283034] pl-2 pr-1 rounded-l-lg py-1">
+                        <div className="text-white text-sm bg-votesbtn pl-2 pr-1 rounded-l-lg py-1">
                             {upvoteCount}
                         </div>
-                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer " 
+                        <div className="text-white bg-votesbtn rounded-r-lg p-1 cursor-pointer " 
                         onClick={() => handleVote(1)}>
                             {(isUpvoted && !isDownvoted) ? (
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="white"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-up">
@@ -145,10 +145,10 @@ export function StuComplaintDataCard({ props }) {
 
                     {/* Downvote  */}
                      <div className="flex items-center">
-                        <div className="text-white text-sm bg-[#2A3236] pl-2 pr-1 rounded-l-lg py-1">
+                        <div className="text-white text-sm bg-votesbtn pl-2 pr-1 rounded-l-lg py-1">
                             {downvoteCount}
                         </div>
-                        <div className="text-white bg-[#283034] rounded-r-lg p-1 cursor-pointer" 
+                        <div className="text-white bg-votesbtn rounded-r-lg p-1 cursor-pointer" 
                         onClick={() => handleVote(-1)}>
                             {isDownvoted ? (
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="white"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-down">
@@ -164,7 +164,7 @@ export function StuComplaintDataCard({ props }) {
                 </div>
 
                 {/* date Posted  */}
-                <div className="text-[#b9babb]">
+                <div className="text-compcardsecondary/90">
                     {formattedDate}
                 </div>
             </div>

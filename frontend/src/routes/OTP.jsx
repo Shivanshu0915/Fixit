@@ -9,7 +9,7 @@ const OTPPage = ({isAdmin, formData, onFailure}) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-badami1">
-      <div className="w-full max-w-md bg-[var(--color-badami2)] shadow-xl rounded-2xl p-6">
+      <div className="w-full max-w-md bg-badami2 shadow-xl rounded-2xl p-6">
         <div className="p-4">
           <h1 className="text-3xl font-bold text-center text-midnight mb-4">
             Enter OTP

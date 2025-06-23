@@ -64,24 +64,24 @@ export default function TrackComplaint(){
     <div className="bg-stubgdark w-full h-full py-4 px-[4%] flex flex-col gap-y-3 overflow-auto scrollbar-thin scrollbar-webkit">
       {/* Heading */}
       <div>
-        <h1 className="bg-stubgdark text-white py-2 flex justify-center text-2xl md:text-3xl font-bold">
+        <h1 className="text-dashtext py-2 flex justify-center text-2xl md:text-3xl font-bold">
           Complaints Tracking 
         </h1>
-        <p className="text-center mb-6 text-gray-300">View and track all hostel and mess complaints</p>
+        <p className="text-center mb-6 text-dashtextsecondary">View and track all hostel and mess complaints</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <StatBox label="Total Complaints" value={total} />
+        <StatBox label="Total Complaints" value={total} color="text-dashtext"/>
         <StatBox label="Resolved" value={resolved} color="text-green-400" />
         <StatBox label="Unresolved" value={unresolved} color="text-red-400" />
       </div>
 
       {/* Toggle Bar and System*/}
-      <div className="w-full bg-gray-800 p-4 rounded-lg mb-6 border-gray-700 border-1">
+      <div className="w-full bg-trackbg1 p-4 rounded-lg mb-6 border-trackborder border-1">
         {/* Toggle btns */}
-        <div className='bg-gray-700 w-full flex mb-4 rounded-md p-1'>
-          <button className={`w-full py-2 rounded-md ${mode === 'id' ? 'bg-gray-600' : 'bg-gray-700'} cursor-pointer`}
+        <div className='bg-trackbg2 w-full flex mb-4 rounded-md p-1'>
+          <button className={`w-full py-2 font-medium rounded-md ${mode === 'id' ? 'bg-trackbg3 text-trackhovertext' : 'bg-trackbg2 text-tracktext'} cursor-pointer`}
           onClick={() => {
             setMode('id');
             setComplaints([]);
@@ -90,7 +90,7 @@ export default function TrackComplaint(){
             Search by ID
           </button>
 
-          <button className={`w-full py-2 rounded-md ${mode === 'filter' ? 'bg-gray-600' : 'bg-gray-700'} cursor-pointer`}
+          <button className={`w-full py-2 font-medium rounded-md ${mode === 'filter' ? 'bg-trackbg3 text-trackhovertext' : 'bg-trackbg2 text-tracktext'} cursor-pointer`}
           onClick={() => {
             setMode('filter');
             setComplaints([]);
@@ -103,28 +103,28 @@ export default function TrackComplaint(){
         {/* Options */}
         {mode === 'id' ? (
           <div className="flex gap-4 items-center">
-            <input className="w-full px-4 py-2 rounded-md bg-gray-700 text-white"
+            <input className="w-full px-4 py-2 rounded-md bg-trackbg2 font-medium text-tracktextsecondary"
               placeholder="Enter Complaint ID" value={complaintId}
               onChange={e => setComplaintId(e.target.value)}/>
-            <button className="bg-btnblue px-4 py-2 rounded-md cursor-pointer" onClick={handleSearch}>
+            <button className="bg-filebtn font-medium text-white px-4 py-2 rounded-md cursor-pointer" onClick={handleSearch}>
               Search
             </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-            <select className="bg-gray-700 text-white px-4 py-2 rounded-md" value={status}
+            <select className="bg-trackbg2 font-medium text-tracktext px-4 py-2 rounded-md" value={status}
               onChange={e => setStatus(e.target.value)}>
               <option value="all">All Status</option>
               <option value="resolved">Resolved</option>
               <option value="unresolved">Unresolved</option>
             </select>
 
-            <select className="bg-gray-700 text-white px-4 py-2 rounded-md" value={category}
+            <select className="bg-trackbg2 font-medium text-tracktext px-4 py-2 rounded-md" value={category}
               onChange={e => setCategory(e.target.value)}>
               <option value="hostel">Hostel</option>
               <option value="mess">Mess</option>
             </select>
-            <button className="bg-btnblue px-4 py-2 rounded-md cursor-pointer" onClick={handleFilter}>
+            <button className="bg-filebtn font-medium text-white px-4 py-2 rounded-md cursor-pointer" onClick={handleFilter}>
               Apply Filters
             </button>
           </div>
@@ -137,7 +137,7 @@ export default function TrackComplaint(){
             <TrackCard key={item._id} props={item} /> 
           ))
         ) : (
-          <p className="text-gray-400 text-center">No complaints to display.</p>
+          <p className="text-tracktext text-center">No complaints to display.</p>
         )}
       </div>
     </div>

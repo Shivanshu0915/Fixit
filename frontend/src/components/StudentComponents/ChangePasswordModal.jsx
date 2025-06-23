@@ -60,48 +60,48 @@ export default function ChangePasswordModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 overflow-auto">
-      <div className="bg-[#020817] rounded-lg w-full max-w-md p-6 relative border-1 border-gray-800">
+      <div className="bg-chngpassbg rounded-lg w-full max-w-md p-6 relative border-1 border-profileborder">
         {/* Close Icon */}
-        <button className="absolute top-3 right-3 text-white text-xl cursor-pointer rounded-full hover:border-1 hover:border-white p-1"
+        <button className="absolute top-3 right-3 text-chngpasstext text-xl cursor-pointer rounded-full hover:border-1 hover:border-chngpasstext p-1"
         onClick={()=>{
           onClose();
           setCurrentPassword('');
           setNewPassword('');
           setConfirmNewPassword('');
         }}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" className='fill-chngpasstext'><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
         </button>
 
-        <h2 className="text-white text-xl font-semibold mb-4">Change Password</h2>
+        <h2 className="text-chngpasstext text-xl font-semibold mb-4">Change Password</h2>
 
-        <label className="text-white block mb-2">Current Password</label>
+        <label className="text-chngpasstext block mb-2">Current Password</label>
         <input
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
           type="password"
-          className="w-full p-3 mb-4 rounded-2xl border-1 border-gray-700 bg-[#0A0F25] text-white focus:outline-none focus:ring-2 focus:white"
+          className="w-full p-3 mb-4 rounded-2xl border-1 border-profileborder bg-changpassbgsec text-chngpasstextsec focus:outline-none focus:ring-2 focus:ring-dashtext"
           placeholder="Enter current password"
         />
 
-        <label className="text-white block mb-2">New Password</label>
+        <label className="text-chngpasstext block mb-2">New Password</label>
         <input
           type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          className="w-full p-3 mb-4 rounded-2xl border-1 border-gray-700 bg-[#0A0F25] text-white focus:outline-none focus:ring-2 focus:white"
+          className="w-full p-3 mb-4 rounded-2xl border-1 border-profileborder bg-changpassbgsec text-chngpasstextsec focus:outline-none focus:ring-2 focus:ring-dashtext"
           placeholder="Enter new password"
         />
 
-        <label className="text-white block mb-2">Confirm New Password</label>
+        <label className="text-chngpasstext block mb-2">Confirm New Password</label>
         <input
           type="password"
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
-          className="w-full p-3 mb-6 rounded-2xl border-1 border-gray-700 bg-[#0A0F25] text-white focus:outline-none focus:ring-2 focus:white"
+          className="w-full p-3 mb-6 rounded-2xl border-1 border-profileborder bg-changpassbgsec text-chngpasstextsec focus:outline-none focus:ring-2 focus:ring-dashtext"
           placeholder="Confirm new password"
         />
 
-        <button className="w-full bg-gradient-to-r from-[#5046E5] to-[#7d23CE] text-black hover:opacity-90 py-3 rounded-2xl font-semibold cursor-pointer"
+        <button className="w-full bg-gradient-to-r from-chngpassbtnbg1 to-chngpassbtnbg2 text-chngpassbtntext hover:opacity-90 py-3 rounded-2xl font-semibold cursor-pointer"
         onClick={handleUpdatePassword}>
           Update Password
         </button>

@@ -83,7 +83,7 @@ export function MessMenu() {
   if (sessionExpired) return <Navigate to="/login" />;
   return (
     <div className="bg-stubgdark w-full h-full p-4 flex flex-col gap-y-5 overflow-auto scrollbar-thin scrollbar-webkit">
-        <div className="bg-stubgdark text-white flex justify-center text-xl md:text-3xl font-bold">
+        <div className="bg-stubgdark text-dashtext flex justify-center text-xl md:text-3xl font-bold">
           Mess Menu
         </div>
 
@@ -91,7 +91,7 @@ export function MessMenu() {
         <p className="text-red-500">{error}</p>
       ) : media ? (
         <> 
-          <div className="flex justify-center text-md md:text-lg text-gray-300">
+          <div className="flex justify-center text-md md:text-lg text-menusecondary">
             Last updated on : {updatedDate}
           </div>
           <MediaDisplay media={media}/>

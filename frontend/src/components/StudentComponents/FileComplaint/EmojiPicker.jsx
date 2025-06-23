@@ -6,11 +6,11 @@ export const EmojiPickerButton = ({ showEmojiPicker, setShowEmojiPicker, addEmoj
     return (
     <>
         <div className="relative group">
-            <button className="text-gray-500 hover:text-black p-1 rounded-sm border-2 border-gray-500 bg-stubgcard hover:bg-gray-500 cursor-pointer"
+            <button className="text-filecompborder hover:text-emojihovertext p-1 rounded-sm border-2 border-filecompborder bg-stubgcard hover:bg-filecompborder cursor-pointer"
             onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
                 <Smile className="w-7 h-7" />
             </button>
-            <div className="min-w-[70px] absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-200 text-black text-xs px-1.5 py-1 rounded text-center whitespace-nowrap">
+            <div className="min-w-[70px] absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-emojimsgbg text-emojimsgtext text-xs px-1.5 py-1 rounded text-center whitespace-nowrap">
                 Add emoji
             </div>
         </div>

@@ -1,92 +1,257 @@
-
 @import "tailwindcss";
 
 @theme {
-    /* ---------------- HOME PAGE Colors ------------*/
-    --color-pink1: #ffe2e2;
-    --color-pink2: #FFCCCC;
-    --color-pink3: #FFB8B8;
-    --color-pink3: #eed8b4;
-    --color-pink4 : #FFA3A3;
-    --color-logo-green: #004939;
-    --color-btn-green : #004939;
-    --color-green1: #00613B;
-    --color-orange1: #FF9D23;
+  /* ---------------- HOME PAGE Colors ------------*/
+  --color-btn-green : #004939;
+  --color-green1: #00613B;
+  --color-orange1: #FF9D23;
+  --color-badami1: #f5e8d3;
+  --color-badami2: #e8c692;
+  --color-badami3: #e6c793;
+  --color-badami4: #a06e22;
+  --color-badami5: #2f200a;
+  --color-badamidark: #191105;
+  --color-badamidarkl: #474137;
 
-    /* ---Home BACKGROUND COLOR-----*/
-    --color-badami1 : #f5e8d3;
-    --color-badami2 : #e8c692;
-    --color-badami3 : #e6c793;
-    --color-badami4 : #a06e22;
-    --color-badami5 : #2f200a;
-    --color-badamidark : #191105;
-    --color-badamidarkl : #474137;
+  --color-badami6: #2a1d09;
+  --color-btn-badami: #3f2c0e;
 
-    --color-badami6 : #2a1d09;
-    --color-btn-badami : #3f2c0e;
+  /* -------------- Login / SignUp--------------- */
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+  --color-brown1 : #ede0d4;
+  --color-brown2 : #e6ccb2;
+  --color-brown3 : #ddb892;
+  --color-brown4 : #b08968;
+  --color-brown5: #9c6644;
+  --color-brown6: #7f5539;
 
+  /* ---------- Dashboard -------------------------*/
+  --color-stubgdark: #F5E8D3;
+  --color-stubgcard: #FCFBF5;
+  --color-stugreen: #32DE84;
+  --color-stured: #B01D1D;
+  --color-stumsg: #A06E22;
+  --color-btnblue: #0ba6ff;
+  --color-dashborder: #ebcfa2;
+  --color-dashtext: #7F5539;
+  /* --color-dashtext: #73492F; */
+  --color-dashtextsecondary: #5E3620;
+  --color-dashhovertext: #ffffff;
+  --color-sidebarbtn: #7F5539;
+  --color-filterbtn: #7F5539;
+  --color-compcardshadow: #E6C793;
 
-    /* -------------- Login / SignUp--------------- */
+  --color-compcardprimary: #73492F;
+  --color-compcardsecondary: #7F5539;
+  --color-votesbtn: #7F5539;
 
-    --color-midnight: #121063;
-    --color-tahiti: #3ab7bf;
-    --color-bermuda: #78dcca;
-    --color-brown1 : #ede0d4;
-    --color-brown2 : #e6ccb2;
-    --color-brown3 : #ddb892;
-    --color-brown4 : #b08968;
-    --color-brown6 : #7f5539;
-    --color-brown5: #9c6644;
+  --color-filebtn: #7F5539;
+  --color-chatbtn: #7F5539;
 
+  --color-quickcardbg: #7F5539;
+  --color-quickcardtext: #F5E8D3;
+  --color-quickcardhover: #7F5539;
 
-    /* ---------- Students -------------------------*/
-    --color-midnight: #121063;
-    --color-tahiti: #3ab7bf;
-    --color-bermuda: #78dcca;
-    --color-stubgdark: #0E1113;
-    --color-stubgcard: #181C1F;
-    --color-stugreen: #32DE84;
-    --color-stured: #B01D1D; /* Removed extra comma */
-    --color-stumsg: #A06E22;
-    --color-btnblue: #0ba6ff;
-    --color-sidebarbtn: #dadadd;
+  --color-themebtnborder: #F5E8D3;
+  --color-themeboxbg: #FCFBF5;
+  --color-themeboxhoverbg: #F5E8D3;
+  --color-themeboxactivebg: #7F5539;
+  --color-menusecondary: #9C6644;
+
+  --color-dateboxbg: #7F5539;
+  --color-ratemealprimary: #7F5539;
+  --color-ratemealsecondary: #5E3620;
   
+  --color-filecompborder: #7F5539;
+  --color-filecompprimary: #7F5539;
+  --color-filecompsecondary: #5E3620;
+
+  --color-emojihovertext: #F5E8D3;
+  --color-emojimsgbg: #7F5539;
+  --color-emojimsgtext: #F5E8D3;
+  
+  --color-trackbg1: #FCFBF5;
+  --color-trackbg2: #F5E8D3;
+  --color-trackbg3: #7F5539;
+  --color-trackborder: #ebcfa2;
+  --color-tracktext: #7F5539;
+  --color-tracktextsecondary: #7F5539;
+  --color-trackhovertext: #F5E8D3;
+  
+  --color-admenuicon: #5E3620;
+  --color-admenutextprimary: #7F5539;
+  --color-admenutextsecondary: #5E3620;
+  --color-admenubtnbg: #e5e7eb;
+  --color-admenubtntext: #9ca3af;
+
+  --color-ratedashsecondary: #A68567;
+  --color-ratedashborder: #ebcfa2;
+  --color-ratedashdate: #2563eb;
+  --color-ratedashtotal: #16a34a;
+  --color-ratedashavg: #ca8a04;
+  --color-ratedashtop: #9333ea;
+  --color-ratedashtitle: #000000;
+  --color-ratedashsubtitle: #000000;
+  --color-ratedashbarbg: #d1d5db;
+
+  --color-profileheadbg1: #A06E22;
+  --color-profileheadbg2: #E6C793;
+  --color-profilebackbtn: #7F5539;
+  --color-profilecam1: #A06E22;
+  --color-profilecam2: #2F200A;
+
+  --color-profileborder: #B8956A;
+  --color-profileboxbg: #FCFBF5;
+  --color-profileboxtext1: #7F5539;
+  --color-profileboxtext2: #5E3620;
+  --color-profilefieldbg: #F5E8D3;
+
+  --color-chngpassbg: #2F200A;
+  --color-changpassbgsec: #F5E8D3;
+  --color-chngpassbtntext: #000000;
+  --color-chngpasstext: #FCFBF5;
+  --color-chngpasstextsec: #2F200A;
+  --color-chngpassbtnbg1: #A06E22;
+  --color-chngpassbtnbg2: #E6C793;
 
   /* -----------------------------CUSTOM ANIMATION ----------------------------------*/
-
   --animate-slideup: slideUp 1s ease-out;
-  @keyframes slideUp{
-      0% {
-          opacity: 0;
-          transform: translateY(20px);
-      }
-      100%{
-          opacity: 1;
-          transform: translateY(0);
-      }
-      
-  }
 
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
+/* Dark Theme Variant */
+.theme-dark {
+  /* ---------- Dashboard -------------------------*/
+  --color-stubgdark: #0E1113;
+  --color-stubgcard: #181C1F;
+  --color-stugreen: #32DE84;
+  --color-stured: #B01D1D;
+  --color-stumsg: #A06E22;
+  --color-btnblue: #0ba6ff;
 
+  --color-dashborder: #6b7280;
+  --color-dashtext: #ffffff;
+  --color-dashtextsecondary: #d1d5db;
+  --color-dashhovertext: #ffffff;
+  --color-sidebarbtn: #181C1F;
+  --color-filterbtn: #4b5563;
+  --color-compcardshadow: #374151;
+
+  --color-compcardprimary: #e7e8e8;
+  --color-compcardsecondary: #b9babb;
+  --color-votesbtn: #283034;
+
+  --color-filebtn: #0ba6ff;
+  --color-chatbtn: #0ba6ff;
+
+  --color-quickcardbg: #181C1F;
+  --color-quickcardtext: #e8eaed;
+  --color-quickcardhover: #ffffff;
+
+  --color-themebtnborder: #9ca3af;
+  --color-themeboxbg: #181C1F;
+  --color-themeboxhoverbg: #4b5563;
+  --color-themeboxactivebg: #0E1113;
+
+  --color-menusecondary: #d1d5db;
+  --color-ratemealprimary: #e5e7eb;
+  --color-ratemealsecondary: #9ca3af;
+
+  --color-filecompborder: #6b7280;
+  --color-filecompprimary: #9ca3af;
+  --color-filecompsecondary: #d1d5db;
+
+  --color-emojihovertext: #000000;
+  --color-emojimsgbg: #e5e7eb;
+  --color-emojimsgtext: #000000;
+
+  --color-trackbg1: #1f2937;
+  --color-trackbg2: #374151;
+  --color-trackbg3: #4b5563;
+  --color-trackborder: #374151;
+  --color-tracktext: #9ca3af;
+  --color-tracktextsecondary: #ffffff;
+  --color-trackhovertext: #ffffff;
+
+  --color-admenuicon: #9ca3af;
+  --color-admenutextprimary: #4b5563;
+  --color-admenutextsecondary: #9ca3af;
+  --color-admenubtnbg: #e5e7eb;
+  --color-admenubtntext: #9ca3af;
+
+  --color-ratedashsecondary: #9ca3af;
+  --color-ratedashborder: #374151;
+  --color-ratedashdate: #2563eb;
+  --color-ratedashtotal: #16a34a;
+  --color-ratedashavg: #ca8a04;
+  --color-ratedashtop: #9333ea;
+  --color-ratedashtitle: #ffffff;
+  --color-ratedashsubtitle: #d1d5db;
+  --color-ratedashbarbg: #d1d5db;
+
+  --color-profileheadbg1: #1f1b84;
+  --color-profileheadbg2: #8f285f;
+  --color-profilebackbtn: #1f2937;
+  --color-profilecam1: #8b3378;
+  --color-profilecam2: #8725f0;
+
+  --color-profileborder: #4b5563;
+  --color-profileboxbg: #1f2937;
+  --color-profileboxtext1: #9ca3af;
+  --color-profileboxtext2: #ffffff;
+  --color-profilefieldbg: #374151;
+
+  --color-chngpassbg: #020817;
+  --color-changpassbgsec: #0A0F25;
+  --color-chngpassbtntext: #000000;
+  --color-chngpasstext: #ffffff;
+  --color-chngpasstextsec: #ffffff;
+  --color-chngpassbtnbg1: #5046E5;
+  --color-chngpassbtnbg2: #7d23CE;
+}
+
+/* light theme  */
+.theme-light {
+  /* Default colors  */
+}
+
+/* Global smooth transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Updated scrollbar styles to work with themes */
 @utility scrollbar-webkit {
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    &::-webkit-scrollbar-track {
-      background: #0E1113;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: #181C1F; /* Use variable or hex code consistently */
-      border-radius: 50px;
-      border: 1px solid #484848;
-      transition: background-color 0.3s ease; /* Added missing unit */
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #33393F;
-      border: 1px solid #C0C0C0;
-    }
+  &::-webkit-scrollbar {
+    width: 10px;
   }
 
+  &::-webkit-scrollbar-track {
+    background: var(--color-stubgdark);
+  }
 
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-stubgcard);
+    border-radius: 50px;
+    border: 1px solid var(--color-dashborder);
+    transition: background-color 0.3s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-stubgcard);
+    border: 1px solid var(--color-dashtext);
+  }
+}

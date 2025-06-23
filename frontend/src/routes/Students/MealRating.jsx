@@ -4,10 +4,10 @@ import axios from "axios";
 import { getAccessToken } from "../../components/Authentication/RefreshToken";
 
 const meals = [
-  { name: "Breakfast", description: "Start your day with a nutritious breakfast", time: "7:00 - 9:00 AM", availableAfter: "09:00", borderColor: "border-orange-300" },
-  { name: "Lunch", description: "Enjoy a hearty lunch in the afternoon", time: "12:30 - 2:00 PM", availableAfter: "14:00", borderColor: "border-red-300" },
-  { name: "Snacks", description: "Take a break with evening snacks", time: "5:00 - 6:30 PM", availableAfter: "18:30", borderColor: "border-pink-300" },
-  { name: "Dinner", description: "End your day with a satisfying dinner", time: "7:45 - 9:00 PM", availableAfter: "21:00", borderColor: "border-purple-300" },
+  { name: "Breakfast", description: "Start your day with a nutritious breakfast", time: "7:00 - 9:00 AM", availableAfter: "09:00", borderColor: "border-orange-400" },
+  { name: "Lunch", description: "Enjoy a hearty lunch in the afternoon", time: "12:30 - 2:00 PM", availableAfter: "14:00", borderColor: "border-red-400" },
+  { name: "Snacks", description: "Take a break with evening snacks", time: "5:00 - 6:30 PM", availableAfter: "18:30", borderColor: "border-pink-400" },
+  { name: "Dinner", description: "End your day with a satisfying dinner", time: "7:45 - 9:00 PM", availableAfter: "21:00", borderColor: "border-purple-400" },
 ];
 
 function formatDate(date) {
@@ -78,13 +78,13 @@ export default function MealRatingHub() {
 
   return (
       <div className="bg-stubgdark w-full h-full p-4 flex flex-col gap-y-5 overflow-auto scrollbar-thin scrollbar-webkit">
-       <h1 className="bg-stubgdark text-white py-2 flex justify-center text-2xl md:text-3xl font-bold">
+       <h1 className="text-dashtext py-2 flex justify-center text-2xl md:text-3xl font-bold">
          Meal Rating Hub
        </h1>
 
        {/* Date Section */}
        <div className="flex justify-center items-center mb-2 gap-3">
-         <label className="text-md font-medium text-white">Select Date:</label>
+         <label className="text-md font-medium text-menusecondary">Select Date:</label>
          <input type="date" value={selectedDate}
            onChange={(e) => setSelectedDate(e.target.value)}
            className="bg-black text-white border border-gray-600 rounded px-2 py-1

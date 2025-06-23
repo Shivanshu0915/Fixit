@@ -1,66 +1,66 @@
 
 export default function ProfileInfo({userData, isEditing, handleChange}) {
     return (
-        <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-md mb-6">
-            <h2 className="text-lg font-semibold flex gap-x-2 items-center border-b-2 border-gray-700 py-5 px-7">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" /></svg>
+        <div className="w-full max-w-4xl bg-profileboxbg rounded-lg shadow-md mb-6 border-1 border-profileborder">
+            <h2 className="text-lg font-semibold flex gap-x-2 text-dashtext items-center border-b-2 border-profileborder py-5 px-7">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" className="fill-dashtext"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" /></svg>
                 Personal Information
             </h2>
             <div className="grid md:grid-cols-2 gap-6 text-sm py-8 px-7">
                 <div className="">
-                    <label className="block text-gray-400 mb-2 font-semibold">FULL NAME</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">FULL NAME</label>
                     <input
                         type="text"
                         value={userData.name}
                         disabled={!isEditing}
                         onChange={(e) => handleChange("name", e.target.value)}
-                        className={`w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600 ${isEditing ? "border border-purple-400" : ""}`}
+                        className={`w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder ${isEditing ? "border border-purple-400" : ""}`}
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2 font-semibold">REGISTRATION NUMBER</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">REGISTRATION NUMBER</label>
                     <input
                         type="text"
                         value={userData.regNo}
                         disabled
-                        className="w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600"
+                        className="w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder"
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2 font-semibold">COLLEGE</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">COLLEGE</label>
                     <input
                         type="text"
                         value={userData.college}
                         disabled
-                        className={`w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600`}
+                        className={`w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder`}
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2 font-semibold">HOSTEL</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">HOSTEL</label>
                     <input
                         type="text"
                         value={userData.hostel}
                         disabled
-                        className={`w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600`}
+                        className={`w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder`}
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2 font-semibold">MOBILE NUMBER</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">MOBILE NUMBER</label>
                     <input
                         type="text"
                         value={userData.phone}
                         disabled={!isEditing}
                         onChange={(e) => handleChange("phone", e.target.value)}
-                        className={`w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600 ${isEditing ? "border border-purple-400" : ""}`}
+                        className={`w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder ${isEditing ? "border border-purple-400" : ""}`}
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2 font-semibold">EMAIL ADDRESS</label>
+                    <label className="block text-profileboxtext1 mb-2 font-semibold">EMAIL ADDRESS</label>
                     <input
                         type="email"
                         value={userData.email}
                         disabled
-                        className={`w-full bg-gray-700 text-white px-3 py-3 rounded-lg border-2 border-gray-600`}
+                        className={`w-full bg-profilefieldbg text-profileboxtext2 px-3 py-3 rounded-lg border-2 border-profileborder`}
                     />
                 </div>
             </div>

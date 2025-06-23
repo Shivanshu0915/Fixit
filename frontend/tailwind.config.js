@@ -4,13 +4,7 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        'stubgdark': '#0E1113',
-        'stubgcard' : '#181C1F',
-        'stugreen' : '#32DE84',
-        'stured' : '#B01D1D',
-        'stumsg': '#A06E22',
-        'btnblue': '#0ba6ff',
-        'sidebarbtn': '#dadadd',
+
       },
       boxShadow: {
         'right': '5px 0 5px -2px rgba(185, 189, 199, 0.3)',  // Right shadow

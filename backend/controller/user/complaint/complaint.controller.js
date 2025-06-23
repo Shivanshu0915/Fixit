@@ -66,8 +66,6 @@ const getComplaints = async (req, res) => {
             return res.status(403).json({ error: "Invalid token" });
         }
 
-        console.log("getComplaints endpoint hit");
-
         const { category, college, hostel, sortBy = "newest", cursor, limit = 10, lastUpvotes, lastDownvotes } = req.query;
         const userId = decoded.id;
 

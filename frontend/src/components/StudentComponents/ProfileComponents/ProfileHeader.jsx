@@ -1,7 +1,7 @@
 
 export default function ProfileHeader({ profileImage, handleImageChange, userData, isEditing, handleEdit, handleSave, handleCancel }){
     return(
-        <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-[#1f1b84] to-[#8f285f] p-6 relative mb-6">
+        <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-profileheadbg1 to-profileheadbg2 p-6 relative mb-6">
             <div className="flex flex-col items-center space-y-4 md:flex-row md:items-center md:space-x-10">
                 <div className="relative">
                     <div className="w-32 h-32 rounded-full border-4 border-gray-500 bg-gray-200 overflow-hidden">
@@ -19,7 +19,7 @@ export default function ProfileHeader({ profileImage, handleImageChange, userDat
                     </div>
 
                     <label htmlFor="imageUpload">
-                        <div className="absolute bottom-[-2%] right-[-10%] bg-gradient-to-r from-[#8b3378] to-[#8725f0] p-3 rounded-full cursor-pointer shadow-md">
+                        <div className="absolute bottom-[-2%] right-[-10%] bg-gradient-to-r from-profilecam1 to-profilecam2 p-3 rounded-full cursor-pointer shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="white">
                                 <path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z"/>
                             </svg>
@@ -34,7 +34,7 @@ export default function ProfileHeader({ profileImage, handleImageChange, userDat
                 </div>
 
                 <div>
-                    <h1 className="text-2xl font-bold">{userData.name}</h1>
+                    <h1 className="text-2xl text-white font-bold">{userData.name}</h1>
                     <p className="text-sm text-gray-100">{userData.regNo}</p>
                     
                     {/* Buttons */}
@@ -56,7 +56,7 @@ export default function ProfileHeader({ profileImage, handleImageChange, userDat
                                 </svg>
                                 Save Changes
                             </button>
-                            <button className="bg-[#0f172a] border border-gray-400 hover:bg-gray-800 font-semibold px-3 py-2 flex items-center gap-x-2 rounded-lg text-sm cursor-pointer"
+                            <button className="bg-[#0f172a] border border-gray-400 text-white hover:bg-gray-800 font-semibold px-3 py-2 flex items-center gap-x-2 rounded-lg text-sm cursor-pointer"
                             onClick={handleCancel}>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                                 Cancel

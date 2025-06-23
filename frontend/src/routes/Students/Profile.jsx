@@ -71,9 +71,9 @@ export default function UserProfileDashboard() {
   const { handleSave, handleImageChange, logoutHandler} = ProfileHandlerFns({ userData, setProfileImage, setIsEditing });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stubgdark to-stubgcard p-6 flex flex-col items-center text-white">
+    <div className="min-h-screen bg-gradient-to-b from-stubgdark to-stubgcard p-6 flex flex-col items-center">
       <div className="w-full max-w-4xl mb-3">
-        <button onClick={() => window.history.back()} className="flex justify-start bg-gray-800 px-4 py-2 rounded text-white hover:bg-gray-700 cursor-pointer">
+        <button onClick={() => window.history.back()} className="flex justify-start bg-profilebackbtn px-4 py-2 rounded text-white hover:bg-profilebackbtn/90 cursor-pointer">
           Back
         </button>
       </div>

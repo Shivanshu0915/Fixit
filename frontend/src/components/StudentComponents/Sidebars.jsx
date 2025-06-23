@@ -56,7 +56,7 @@ export function Sidebar(props) {
   return (
     <div className="h-[calc(100vh - 60px)] bg-stubgdark ">
       {/* Hamburger icon for mobile */}
-      <button className="md:hidden fixed top-[70px] left-6 z-50 p-2 rounded-md bg-stubgcard/80 backdrop-blur-sm shadow-lg cursor-pointer"
+      <button className="md:hidden fixed top-[70px] left-6 z-50 p-2 rounded-md bg-sidebarbtn/80 backdrop-blur-sm shadow-lg cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}>
         <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
           {isOpen ? (
@@ -68,13 +68,13 @@ export function Sidebar(props) {
       </button>
 
       {/* Sidebar container */}
-      <div className={`${isOpen ? "translate-x-0" : "-translate-x-full"} transform fixed md:relative md:translate-x-0 z-40 w-72 h-[calc(100vh-60px)] bg-stubgdark border-r-[1px] border-gray-600 transition-transform duration-300 ease-in-out`}>
+      <div className={`${isOpen ? "translate-x-0" : "-translate-x-full"} transform fixed md:relative md:translate-x-0 z-40 w-72 h-[calc(100vh-60px)] bg-stubgdark border-r-[2px] border-dashborder transition-transform duration-300 ease-in-out`}>
         <nav className="max-h-[calc(100vh-60px)] px-3 pt-6 pb-4 overflow-auto scrollbar-thin scrollbar-webkit">
           {props.menuItems.map((item, index) => {
             // Render a horizontal divider if specified
             if (item.title === "hr") {
               return (
-                <hr key={index} className="border-t-2 border-gray-700 mt-[20%] mb-[10%]" />
+                <hr key={index} className="border-t-2 border-dashborder mt-[20%] mb-[10%]" />
               );
             }
             // If the item contains a droplist, render the dropdown
