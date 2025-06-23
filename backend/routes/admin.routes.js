@@ -11,6 +11,7 @@ const {
     uploadAdminProfileImage,
     uploadMessMenu,
     getMealRatingsSummary,
+    addAdmin
     
 } = require("../controller/admin");
 
@@ -25,5 +26,8 @@ router.post("/profile/upload-image", authenticateUser, upload3.single("image"), 
 // mess related
 router.post("/mess/upload-menu", authenticateUser, upload2.single('menuImage'), uploadMessMenu);
 router.get("/mess/meal-ratings", getMealRatingsSummary)
+
+// add admin
+router.post("/add-admin", authenticateUser, addAdmin);
 
 module.exports = router;

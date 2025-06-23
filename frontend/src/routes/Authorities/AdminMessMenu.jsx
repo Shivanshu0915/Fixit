@@ -35,7 +35,7 @@ export function AdminMessMenu() {
         const result = await getAccessToken();
         if (!result.token) {
             alert("Session expired! Login again to continue");
-            setSessionExpired(true);
+            window.location.href = "/login";
             return;
         }
 
@@ -79,6 +79,7 @@ export function AdminMessMenu() {
             }
         } catch (err) {
             console.error(err.message);
+            alert(err.message || "An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
         }

@@ -36,6 +36,7 @@ export function UserSignup({moveToOtp}){
     };
     const handleSubmit = async(e)=>{
         e.preventDefault();
+        alert("Requesting OTP... Please wait a moment.")
         await UserSignUpHandler(userSignupData, moveToOtp);
     }
     return (

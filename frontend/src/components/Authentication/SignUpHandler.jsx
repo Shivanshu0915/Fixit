@@ -3,7 +3,6 @@ import { ErrorMsg } from "./AuthErrorMsgs";
 // import {toast } from "react-toastify"
 
 export const UserSignUpHandler = async (props, moveToOtp) => {
-    console.log(props);
     try{
         const response = await axios.post("http://localhost:3000/auth/signup", props , {
             headers: {

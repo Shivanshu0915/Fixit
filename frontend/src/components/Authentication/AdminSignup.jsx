@@ -91,6 +91,7 @@ export function AdminSignup({ moveToOtp }) {
                 formData.append(key, adminSignupData[key]);
             }
         });
+        alert("Requesting OTP... Please wait a moment.")
         await AdminSignUpHandler(formData, moveToOtp);
     };
 

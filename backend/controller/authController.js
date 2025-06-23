@@ -171,7 +171,7 @@ const verifyOtp = async (req, res) => {
         const { isAdmin, name, college, hostel, regNo, phone, email, password } = userData;
         const newUser = new StudentData({ isAdmin, name, college, hostel, regNo, phone, email, password });
         newUser.password = await bcrypt.hash(password, 10);
-        newUser.save();
+        await newUser.save();
         otpStore.delete(email);
         return res.json({ msg: "User registered successfully!" });
     }   
