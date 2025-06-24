@@ -7,6 +7,7 @@ import AdminProfileHeader from "../../components/Admin Components/ProfileCompone
 import AdminProfileInfo from "../../components/Admin Components/ProfileComponents/AdminProfileInfo";
 import AdminProfileSettings from "../../components/Admin Components/ProfileComponents/AdminProfileSettings";
 import ProfileHandlerFns from "../../components/Admin Components/ProfileComponents/AdminProfileHandler";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function UserProfileDashboard() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function UserProfileDashboard() {
       }
 
       try {
-        const res = await fetch("http://localhost:3000/admin/profile", {
+        const res = await fetch(`${API_URL}/admin/profile`, {
           headers: {
             Authorization: `Bearer ${result.token}`,
           },

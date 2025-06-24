@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getAccessToken } from '../Authentication/RefreshToken';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function ChangePasswordModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -31,7 +32,7 @@ export default function ChangePasswordModal({ isOpen, onClose }) {
         window.location.href = "/login";
         return;
       }
-      const res = await fetch("http://localhost:3000/auth/change-profile-password", {
+      const res = await fetch(`${API_URL}/auth/change-profile-password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

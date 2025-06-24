@@ -3,6 +3,7 @@ import { getAccessToken } from "../Authentication/RefreshToken";
 import axios from "axios";
 import { MediaDisplay } from "../StudentComponents/MediaDisplay";
 import { toast } from 'react-toastify';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function AdminComplaintCard({ props, onResolve }) {
     const {
@@ -30,7 +31,7 @@ export function AdminComplaintCard({ props, onResolve }) {
                 return;
             }
 
-            await axios.patch(`http://localhost:3000/admin/resolve-complaint/${_id}`, {}, {
+            await axios.patch(`${API_URL}/admin/resolve-complaint/${_id}`, {}, {
                 headers: { Authorization: `Bearer ${result.token}` },
                 withCredentials: true
             });

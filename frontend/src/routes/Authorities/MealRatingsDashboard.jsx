@@ -3,6 +3,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 import MealBox from '../../components/Admin Components/MealBox';
 import { getAccessToken } from '../../components/Authentication/RefreshToken';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const MealRatingsDashboard = () => {
   const [date, setDate] = useState(new Date());
@@ -17,7 +18,7 @@ const MealRatingsDashboard = () => {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:3000/auth/get-info/`, {
+        const response = await fetch(`${API_URL}/auth/get-info/`, {
           headers: { Authorization: `Bearer ${result.token}` },
         });
         const data = await response.json();
@@ -26,7 +27,7 @@ const MealRatingsDashboard = () => {
         }
 
         const formattedDate = format(date, "yyyy-MM-dd");
-        const res = await axios.get("http://localhost:3000/admin/mess/meal-ratings", {
+        const res = await axios.get(`${API_URL}/admin/mess/meal-ratings`, {
           params: { date: formattedDate, college: data.college, hostel: data.hostel },
         });
         setData(res.data);

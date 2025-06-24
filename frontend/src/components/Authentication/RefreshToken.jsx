@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getAccessToken() {
     let token = sessionStorage.getItem("accessToken");
@@ -28,7 +29,7 @@ export async function getAccessToken() {
 
 async function refreshAccessToken(userRole) {
     try {
-        const res = await fetch("http://localhost:3000/auth/refresh", {
+        const res = await fetch(`${API_URL}/auth/refresh`, {
             method: "POST",
             credentials: "include",
         });

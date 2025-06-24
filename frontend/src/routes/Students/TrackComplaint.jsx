@@ -3,6 +3,7 @@ import { getAccessToken } from '../../components/Authentication/RefreshToken';
 import { TrackCard } from '../../components/StudentComponents/TrackComplaint/TrackCard';
 import StatBox from '../../components/StudentComponents/TrackComplaint/TrackCard';
 import TrackHandlerFns from '../../components/StudentComponents/TrackComplaint/TrackHandlerFns';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function TrackComplaint(){
   const [mode, setMode] = useState('id')
@@ -25,7 +26,7 @@ export default function TrackComplaint(){
           window.location.href = "/login";
           return;
         }
-        const response = await fetch(`http://localhost:3000/auth/get-info/`, {
+        const response = await fetch(`${API_URL}/auth/get-info/`, {
           headers: { Authorization: `Bearer ${result.token}` },
         });
         const infoData = await response.json();
@@ -36,7 +37,7 @@ export default function TrackComplaint(){
             studentId: infoData.id
           });
 
-          const res = await fetch(`http://localhost:3000/user/complaints-statistics?${params.toString()}`, {
+          const res = await fetch(`${API_URL}/user/complaints-statistics?${params.toString()}`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${result.token}`

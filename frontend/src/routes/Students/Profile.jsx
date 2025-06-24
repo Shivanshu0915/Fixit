@@ -5,6 +5,7 @@ import ProfileHeader from "../../components/StudentComponents/ProfileComponents/
 import ProfileInfo from "../../components/StudentComponents/ProfileComponents/ProfileInfo";
 import ProfileSettings from "../../components/StudentComponents/ProfileComponents/ProfileSettings";
 import ProfileHandlerFns from "../../components/StudentComponents/ProfileComponents/ProfileHandler";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function UserProfileDashboard() {
   const [isEditing, setIsEditing] = useState(false);
@@ -31,7 +32,7 @@ export default function UserProfileDashboard() {
       }
 
       try {
-        const res = await fetch("http://localhost:3000/user/profile", {
+        const res = await fetch(`${API_URL}/user/profile`, {
           headers: {
             Authorization: `Bearer ${result.token}`,
           },

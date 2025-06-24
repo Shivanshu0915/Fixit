@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAccessToken } from '../../components/Authentication/RefreshToken';
 import { Navigate } from 'react-router-dom';
 import { MediaDisplay } from '../../components/StudentComponents/MediaDisplay';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function MessMenu() {
   const [college, setCollege] = useState('');
@@ -21,7 +22,7 @@ export function MessMenu() {
       }
 
       try {
-        const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+        const res = await fetch(`${API_URL}/auth/get-info/`, {
           headers: { Authorization: `Bearer ${result.token}` },
         });
 
@@ -47,7 +48,7 @@ export function MessMenu() {
       if (!college || !hostel) return;
 
       try {
-        const res = await fetch(`http://localhost:3000/user/mess/menu?college=${college}&hostel=${hostel}`);
+        const res = await fetch(`${API_URL}/user/mess/menu?college=${college}&hostel=${hostel}`);
         const data = await res.json();
 
         if (res.ok) {

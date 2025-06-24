@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getAccessToken } from "../../Authentication/RefreshToken";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const TrackHandlerFns = ({ complaintId, setComplaints, studentId, status, category }) => {
 
@@ -22,7 +23,7 @@ const TrackHandlerFns = ({ complaintId, setComplaints, studentId, status, catego
                 studentId
             });
 
-            const res = await fetch(`http://localhost:3000/user/complaint-search-by-id?${params.toString()}`, {
+            const res = await fetch(`${API_URL}/user/complaint-search-by-id?${params.toString()}`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${result.token}`
@@ -53,7 +54,7 @@ const TrackHandlerFns = ({ complaintId, setComplaints, studentId, status, catego
                 category
             });
 
-            const res = await fetch(`http://localhost:3000/user/complaint-browse-by-filter?${params.toString()}`, {
+            const res = await fetch(`${API_URL}/user/complaint-browse-by-filter?${params.toString()}`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${result.token}`

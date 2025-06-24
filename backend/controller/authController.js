@@ -1,4 +1,4 @@
-const { StudentData, AdminData, CollegeName} = require("../models/AuthModel");
+const { StudentData, AdminData, CollegeName } = require("../models/AuthModel");
 const { UserSignupValidate, AdminSignupValidate } = require("../utils/AuthZods");
 const { sendOtpEmail } = require("../utils/sendOtp");
 const bcrypt = require("bcrypt");
@@ -40,10 +40,8 @@ const login = async (req, res) => {
         // Set refresh token in HTTP-only cookie
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            // secure: process.env.NODE_ENV === "production",
-            secure: false,
-            // sameSite: "None",
-            sameSite: "Lax",
+            secure: process.env.COOKIE_SECURE === "true",  // "true" in .env for prod
+            sameSite: process.env.COOKIE_SAMESITE || "Lax" // "None" for prod if cross-site
         });
 
         res.json({ accessToken, role });
@@ -57,7 +55,7 @@ const login = async (req, res) => {
 const refreshToken = (req, res) => {
     console.log("Checking refresh token...");
     const token = req.cookies.refreshToken;
-    if (!token)    return res.status(401).json({ message: "No refresh token" });
+    if (!token) return res.status(401).json({ message: "No refresh token" });
 
     jwt.verify(token, process.env.REFRESH_JWT_TOKEN_SECRET, (err, decoded) => {
         if (err) {
@@ -68,7 +66,7 @@ const refreshToken = (req, res) => {
         }
         const { id, email, role } = decoded;
         const accessToken = jwt.sign({ id, email, role }, process.env.ACCESS_JWT_TOKEN_SECRET, { expiresIn: "15m" });
-        res.json({ accessToken,role });
+        res.json({ accessToken, role });
     });
 };
 
@@ -77,7 +75,8 @@ const refreshToken = (req, res) => {
 const logout = (req, res) => {
     res.clearCookie("refreshToken", {
         httpOnly: true,
-        sameSite: "Lax",
+        secure: process.env.COOKIE_SECURE === "true",
+        sameSite: process.env.COOKIE_SAMESITE || "Lax"
     });
     res.json({ message: "Logged out" });
 };
@@ -89,7 +88,7 @@ const otpStore = new Map();
 const requestOtp = async (req, res) => {
     const signupData = req.body;
     // console.log(signupData);
-    const {email, college, isAdmin} = signupData;
+    const { email, college, isAdmin } = signupData;
     // Check if email is in valid format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -97,7 +96,7 @@ const requestOtp = async (req, res) => {
     }
 
     // Checking for correct email domain of college
-    if(isAdmin === false){
+    if (isAdmin === false) {
         const collegeData = await CollegeName.findOne({ name: college });
         if (!collegeData) {
             return res.status(400).json({ msg: "College does not exist." });
@@ -107,28 +106,28 @@ const requestOtp = async (req, res) => {
         const requiredDomain = collegeData.domain.toLowerCase();
 
         if (userDomain !== requiredDomain) {
-            return res.status(400).json({ 
-                msg: "Email domain does not match the selected college's official domain." 
+            return res.status(400).json({
+                msg: "Email domain does not match the selected college's official domain."
             });
         }
     }
 
-    let user = signupData.isAdmin ? await AdminData.findOne({college}) : await StudentData.findOne({email});
-    if(user){
-        if(isAdmin){
-            return res.status(400).json({ 
-                msg: "Super Admin already exists for this college." ,
+    let user = signupData.isAdmin ? await AdminData.findOne({ college }) : await StudentData.findOne({ email });
+    if (user) {
+        if (isAdmin) {
+            return res.status(400).json({
+                msg: "Super Admin already exists for this college.",
             })
-        }else{
-            return res.status(400).json({ 
-                msg: "User already exists" ,
+        } else {
+            return res.status(400).json({
+                msg: "User already exists",
             })
         }
     }
-    if(isAdmin) user = await AdminData.findOne({email});
-    if(user){
-        return res.status(400).json({ 
-            msg: "Super Admin already exists with this email." ,
+    if (isAdmin) user = await AdminData.findOne({ email });
+    if (user) {
+        return res.status(400).json({
+            msg: "Super Admin already exists with this email.",
         })
     }
     let parseData = (signupData.isAdmin ? AdminSignupValidate : UserSignupValidate).safeParse(signupData);
@@ -162,7 +161,7 @@ const verifyOtp = async (req, res) => {
         otpStore.delete(email);
         return res.status(400).json({ msg: "Invalid OTP. Please try again." });
     }
-    const {isAdmin } = userData;
+    const { isAdmin } = userData;
     // OTP is correct, store user in DB
     if (isAdmin) {
         otpStore.delete(email);
@@ -174,7 +173,7 @@ const verifyOtp = async (req, res) => {
         await newUser.save();
         otpStore.delete(email);
         return res.json({ msg: "User registered successfully!" });
-    }   
+    }
 };
 
 const resendOtp = async (req, res) => {
@@ -190,7 +189,7 @@ const resendOtp = async (req, res) => {
     res.json({ msg: "New OTP sent successfully!" });
 };
 
-const getInfo = async(req, res) => {
+const getInfo = async (req, res) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ error: 'Access token missing or invalid' });
@@ -218,7 +217,7 @@ const getInfo = async(req, res) => {
         res.json({
             college: result.college,
             hostel: result.hostel,
-            id : result._id
+            id: result._id
         });
     } catch (err) {
         console.error(err);

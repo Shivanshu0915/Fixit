@@ -1,5 +1,6 @@
 import { getAccessToken } from '../../components/Authentication/RefreshToken';
 import React, { useState } from 'react';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function AdminMessMenu() {
     const [file, setFile] = useState(null);
@@ -40,7 +41,7 @@ export function AdminMessMenu() {
         }
 
         try {
-            const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+            const res = await fetch(`${API_URL}/auth/get-info/`, {
                 headers: { Authorization: `Bearer ${result.token}` },
             });
             const data = await res.json();
@@ -58,7 +59,7 @@ export function AdminMessMenu() {
             
             setLoading(true);
 
-            const response = await fetch(`http://localhost:3000/admin/mess/upload-menu?college=${data.college}&hostel=${data.hostel}`, {
+            const response = await fetch(`${API_URL}/admin/mess/upload-menu?college=${data.college}&hostel=${data.hostel}`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${result.token}`,

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { getAccessToken } from "../../Authentication/RefreshToken";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ProfileHandlerFns = ({ userData, setProfileImage, setIsEditing }) => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const ProfileHandlerFns = ({ userData, setProfileImage, setIsEditing }) => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/user/profile-update-data", {
+            const res = await fetch(`${API_URL}/user/profile-update-data`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +56,7 @@ const ProfileHandlerFns = ({ userData, setProfileImage, setIsEditing }) => {
         formData.append("image", file);
 
         try {
-            const res = await fetch("http://localhost:3000/user/upload-profile-image", {
+            const res = await fetch(`${API_URL}/user/upload-profile-image`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${result.token}`,
@@ -75,10 +76,13 @@ const ProfileHandlerFns = ({ userData, setProfileImage, setIsEditing }) => {
 
     const logoutHandler = async () => {
         try {
-            await axios.post("http://localhost:3000/auth/logout", {}, { withCredentials: true });
+            await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
             sessionStorage.removeItem("accessToken");
             sessionStorage.removeItem("role");
-            navigate("/");
+
+            const logoutChannel = new BroadcastChannel('logout_channel');
+            logoutChannel.postMessage('logout');
+            navigate('/', { replace: true });
         } catch (error) {
             console.error("Logout failed:", error);
         }

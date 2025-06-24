@@ -1,10 +1,11 @@
 import axios from "axios";
 import { ErrorMsg } from "./AuthErrorMsgs";
 // import {toast } from "react-toastify"
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const UserSignUpHandler = async (props, moveToOtp) => {
     try{
-        const response = await axios.post("http://localhost:3000/auth/signup", props , {
+        const response = await axios.post(`${API_URL}/auth/signup`, props , {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -24,7 +25,7 @@ export const AdminSignUpHandler = async (props, moveToOtp) => {
             if(!(key === "document")) signupObject[key] = value;
         });
 
-        const response = await axios.post("http://localhost:3000/auth/signup",signupObject);
+        const response = await axios.post(`${API_URL}/auth/signup`,signupObject);
         alert("Redirecting to OTP page!");
         moveToOtp(props);
     } 
@@ -49,7 +50,7 @@ export const OtpHandler = async ({isAdmin, formData, otp, onFailure, navigate, i
         }
     }
 
-    const path = isResend ? "http://localhost:3000/auth/resend-otp" : "http://localhost:3000/auth/verify-otp";
+    const path = isResend ? `${API_URL}/auth/resend-otp` : `${API_URL}/auth/verify-otp`;
     try{
         const response = await axios.post(path, props);
         if(isResend === true){
@@ -60,7 +61,7 @@ export const OtpHandler = async ({isAdmin, formData, otp, onFailure, navigate, i
         else{
             if(isAdmin){
                 alert("Otp verified successfully!")
-                const response = await axios.post("http://localhost:3000/auth/admin-signup-request", formData);
+                const response = await axios.post(`${API_URL}/auth/admin-signup-request`, formData);
                 alert("Waiting for approval. Check  your email");
                 navigate("/");
             }

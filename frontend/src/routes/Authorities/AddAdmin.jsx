@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getAccessToken } from '../../components/Authentication/RefreshToken';
 import { CustomDropdown, InputField } from '../../components/Admin Components/AddAdminFields';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AddAdminForm = () => {
   const departments = ['Mess', 'Hostel', 'Custom'];
@@ -35,7 +36,7 @@ const AddAdminForm = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+      const res = await fetch(`${API_URL}/auth/get-info/`, {
         headers: { Authorization: `Bearer ${result.token}` },
       });
       const data = await res.json();
@@ -51,7 +52,7 @@ const AddAdminForm = () => {
         hostel: data.hostel
       };
 
-      const response = await fetch(`http://localhost:3000/admin/add-admin`, {
+      const response = await fetch(`${API_URL}/admin/add-admin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

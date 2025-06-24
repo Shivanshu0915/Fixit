@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MediaDisplay } from "./MediaDisplay";
 import { getAccessToken } from "../Authentication/RefreshToken";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function StuComplaintDataCard({ props }) {
     const[isUpvoted, setIsUpvoted] = useState(false);
@@ -41,7 +42,7 @@ export function StuComplaintDataCard({ props }) {
                 }
                 else    accessToken = result.token;
 
-                const response = await axios.get(`http://localhost:3000/user/get-user-vote/${_id}`,
+                const response = await axios.get(`${API_URL}/user/get-user-vote/${_id}`,
                     { headers: { Authorization: `Bearer ${accessToken}` } }
                 );
                 // ✅ Set upvote/downvote states based on fetched userVote
@@ -70,7 +71,7 @@ export function StuComplaintDataCard({ props }) {
             else    accessToken = result.token;
 
             const response = await axios.post(
-                `http://localhost:3000/user/vote-complaint`,
+                `${API_URL}/user/vote-complaint`,
                 { complaintId: _id, voteType: userVote === type ? 0 : type }, // Toggle vote
                 { headers: { Authorization: `Bearer ${accessToken}` } }
             );

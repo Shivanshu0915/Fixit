@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { AdminSignUpHandler } from "./SignUpHandler";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function AdminSignup({ moveToOtp }) {
     const [colleges, setColleges] = useState([]);
@@ -35,11 +36,11 @@ export function AdminSignup({ moveToOtp }) {
     });
 
     useEffect(() => {
-        axios.get("http://localhost:3000/auth/get-college")
+        axios.get(`${API_URL}/auth/get-college`)
             .then(response => setColleges(response.data))
             .catch(error => console.error("Error fetching colleges:", error));
 
-        axios.get("http://localhost:3000/auth/get-hostel")
+        axios.get(`${API_URL}/auth/get-hostel`)
             .then(response => setHostels(response.data))
             .catch(error => console.error("Error fetching hostels:", error));
     }, []);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MealCard from "../../components/StudentComponents/MealCard";
 import axios from "axios";
 import { getAccessToken } from "../../components/Authentication/RefreshToken";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const meals = [
   { name: "Breakfast", description: "Start your day with a nutritious breakfast", time: "7:00 - 9:00 AM", availableAfter: "09:00", borderColor: "border-orange-400" },
@@ -31,7 +32,7 @@ export default function MealRatingHub() {
         return;
       }
       try {
-        const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+        const res = await fetch(`${API_URL}/auth/get-info/`, {
           headers: { Authorization: `Bearer ${result.token}` },
         });
         const data = await res.json();
@@ -41,7 +42,7 @@ export default function MealRatingHub() {
           setCollege(data.college);
           setHostel(data.hostel);
           // Now fetch ratings immediately after student info is set
-          const ratingRes = await axios.get(`http://localhost:3000/user/mess/meal-ratings?date=${selectedDate}&studentId=${data.id}`, {
+          const ratingRes = await axios.get(`${API_URL}/user/mess/meal-ratings?date=${selectedDate}&studentId=${data.id}`, {
             headers: { Authorization: `Bearer ${result.token}` },
           });
 
@@ -59,7 +60,7 @@ export default function MealRatingHub() {
 
   const handleSubmitRating = async (mealType, value) => {
     try {
-      await axios.post(`http://localhost:3000/user/mess/create-meal-ratings`, {
+      await axios.post(`${API_URL}/user/mess/create-meal-ratings`, {
         studentId: stuId,
         college,
         hostel,

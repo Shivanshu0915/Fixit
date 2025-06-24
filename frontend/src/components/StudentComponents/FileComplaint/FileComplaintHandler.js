@@ -1,4 +1,5 @@
 import { getAccessToken } from "../../Authentication/RefreshToken";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const handleFileComplaintSubmit = async ({
     title, text, category, subCategory, selectedFiles,
@@ -33,7 +34,7 @@ export const handleFileComplaintSubmit = async ({
         selectedFiles.forEach((file) => formData.append("files", file));
 
         try {
-            const uploadResponse = await fetch("http://localhost:3000/user/upload-complaint", {
+            const uploadResponse = await fetch(`${API_URL}/user/upload-complaint`, {
                 method: "POST",
                 body: formData,
             });
@@ -60,7 +61,7 @@ export const handleFileComplaintSubmit = async ({
     };
 
     try {
-        const response = await fetch("http://localhost:3000/user/create-complaint", {
+        const response = await fetch(`${API_URL}/user/create-complaint`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import { getAccessToken } from "../Authentication/RefreshToken";
 import ChangePasswordModal from "./ChangePasswordModal";
 import { jwtDecode } from "jwt-decode";
 import ThemeSwitcher from "../ThemeSwitcher";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function QuickActionsCard() {
     const navigate = useNavigate();
@@ -14,14 +15,16 @@ export function QuickActionsCard() {
 
     const logoutHandler = async () => {
         try {
-            await axios.post("http://localhost:3000/auth/logout", {}, { withCredentials: true });
+            await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
 
             // Remove accessToken from sessionStorage
             sessionStorage.removeItem("accessToken");
             sessionStorage.removeItem("role");
 
-            // Redirect user
-            navigate("/");
+            const logoutChannel = new BroadcastChannel('logout_channel');
+            logoutChannel.postMessage('logout');
+
+            navigate('/', { replace: true });
         } catch (error) {
             console.error("Logout failed:", error);
         }
@@ -41,7 +44,7 @@ export function QuickActionsCard() {
                 if (decoded.role) {
                     setRole(decoded.role);
                 }
-                const path = (decoded.role == "admin" ? "http://localhost:3000/admin/profile" : "http://localhost:3000/user/profile")
+                const path = (decoded.role == "admin" ? `${API_URL}/admin/profile` : `${API_URL}/user/profile`)
                 const res = await fetch(path, {
                     headers: {
                         Authorization: `Bearer ${result.token}`,

@@ -5,6 +5,7 @@ import { getAccessToken } from "../Authentication/RefreshToken.jsx";
 import { AdminComplaintCard } from "./Cards.jsx";
 import { QuickActionsCard } from "../StudentComponents/QuickActions.jsx";
 import { FilterDropdown } from "../StudentComponents/Dropdown.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function AdminMidMain(){
     const location = useLocation();
@@ -51,7 +52,7 @@ export function AdminMidMain(){
                 return;
             }
             // getting college and hostel info 
-            const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+            const res = await fetch(`${API_URL}/auth/get-info/`, {
                 headers: { Authorization: `Bearer ${result.token}` },
             });
             const data = await res.json();
@@ -74,7 +75,7 @@ export function AdminMidMain(){
                     }
                 }
                 const response = await axios.get(
-                    "http://localhost:3000/user/fetch-complaint",
+                    `${API_URL}/user/fetch-complaint`,
                     {
                         params,
                         headers: { Authorization: `Bearer ${result.token}` },

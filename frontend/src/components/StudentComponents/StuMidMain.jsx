@@ -5,6 +5,7 @@ import axios from "axios";
 import { getAccessToken } from "../Authentication/RefreshToken.jsx";
 import { QuickActionsCard } from "./QuickActions.jsx";
 import { StuComplaintDataCard } from "./ComplaintCard.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function StuMidFirst() {
     const location = useLocation();
@@ -47,7 +48,7 @@ export function StuMidFirst() {
                 return;
             }
             // getting college and hostel info 
-            const res = await fetch(`http://localhost:3000/auth/get-info/`, {
+            const res = await fetch(`${API_URL}/auth/get-info/`, {
                 headers: { Authorization: `Bearer ${result.token}` },
             });
             const data = await res.json();
@@ -71,7 +72,7 @@ export function StuMidFirst() {
                 }
 
                 const response = await axios.get(
-                    "http://localhost:3000/user/fetch-complaint",
+                    `${API_URL}/user/fetch-complaint`,
                     {
                         params,
                         headers: { Authorization: `Bearer ${result.token}` },

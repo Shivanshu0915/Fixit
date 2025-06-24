@@ -1,12 +1,13 @@
 import axios from "axios";
 // import {toast} from "react-toastify";
 // import {useNavigate} from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const LoginHandler = async (props)=>{
     // const navigate = useNavigate();
     // console.log(props);
     try{
-        const response = await axios.post("http://localhost:3000/auth/login", props, {
+        const response = await axios.post(`${API_URL}/auth/login`, props, {
             headers : {
                 "Content-Type" : "application/json",
             },
