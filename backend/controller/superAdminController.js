@@ -70,7 +70,7 @@ const adminSignupRequest = async (req, res) => {
                     <p><strong>Category:</strong> ${category}</p>
                     <p><strong>Position:</strong> ${position}</p>
                     <p><strong>Phone:</strong> ${phone}</p>
-                    <p><a href="http://localhost:3000/auth/approve-admin/${email}">Approve</a> | <a href="http://localhost:3000/auth/reject-admin/${email}">Reject</a></p>
+                    <p><a href="${process.env.BACKEND_URL}/auth/approve-admin/${email}">Approve</a> | <a href="${process.env.BACKEND_URL}/auth/reject-admin/${email}">Reject</a></p>
                 `,
                 attachments: attachments.length > 0 ? attachments : []  // Attach file if present
             };
