@@ -3,7 +3,7 @@ import { AdminLogin } from "../components/Authentication/AdminLogin";
 import { UserLogin } from "../components/Authentication/UserLogin";
 
 const LoginPage = () => {
-  const [isAdmin, setIsAdmin] = useState(true); // 'admin' or 'user'
+  const [isAdmin, setIsAdmin] = useState(false); // 'admin' or 'user'
 
   return (
     <div className="min-h-[100vh] w-full flex items-center justify-center bg-badamidark p-8">

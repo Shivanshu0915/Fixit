@@ -45,5 +45,4 @@ module.exports = {
     ComplaintData,
     VoteData,
     MealRatingData,
-    
 };

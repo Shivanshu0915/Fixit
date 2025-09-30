@@ -5,7 +5,7 @@ import { AdminSignup } from "../components/Authentication/AdminSignup.jsx";
 import OTPPage from "./OTP.jsx";
 
 const Signup = () => {
-  const [isAdmin, setLoginMode] = useState(true); // 'admin' or 'user'
+  const [isAdmin, setLoginMode] = useState(false); // 'admin' or 'user'
   const [data, setData] = useState(null);
   const [email, setEmail] = useState(null);
   return (
