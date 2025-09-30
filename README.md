@@ -16,24 +16,14 @@
     A seamless hostel and mess complaint management platform for colleges and universities.
     <br />
     <br />
-    <a href="https://fixit-fpvg.onrender.com/" ><strong style="text-decoration: underline; color: #0366d6;">View Demo »</strong></a>
+    <a href="https://fixit-fpvg.onrender.com/" ><strong>View Demo »</strong></a>
     <br />
-    <a href="https://github.com/Shivanshu0915/fixit/issues" style="text-decoration: underline; color: #0366d6;">Report Bug</a>
-    ·
-    <a href="https://github.com/Shivanshu0915/fixit/issues" style="text-decoration: underline; color: #0366d6;">Request Feature</a>
+    <br />
+    <a href="https://github.com/Shivanshu0915/fixit/issues">Report Bug</a>
+    * 
+    <a href="https://github.com/Shivanshu0915/fixit/issues">Request Feature</a>
   </p>
 </div>
-
-<style>
-  .toc a,
-  .toc a:hover { /* This targets links in both normal and hover states */
-    color: #0366d6;
-    text-decoration: underline;
-  }
-  summary {
-    cursor: pointer;
-  }
-</style>
 
 <details class="toc">
   <summary>Table of Contents</summary>
@@ -60,7 +50,6 @@
   </ol>
 </details>
 
----
 
 ## About The Project
 
@@ -90,25 +79,25 @@ This project is built with a modern, scalable, and robust tech stack.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## 📸 Screenshots & Demo
 
 ### Screenshots
-Place your screenshots here. You can add more by copying the line.
-_Tip: Create an `images` folder in your repository to store the screenshots._
 
-![Project Screenshot 1](assets/screenshots/dashboard.png)
+![Project Screenshot 1](assets/screenshots/dashboard.png)<br/>
 ![Project Screenshot 2](assets/screenshots/file-complaint.png)
 
-### Video Demo
-For the video, a great approach is to upload it to a service like YouTube or Loom and link it here. You can make a thumbnail image clickable.
+<br/>
+<br/>
 
-[![FixIt Video Demo](assets/screenshots/mess-menu.png)](https://www.youtube.com/watch?v=your_video_id)
+### Video Demo
+
+[![FixIt Video Demo](assets/screenshots/dashboard.png)](https://www.youtube.com/watch?v=your_video_id)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## Getting Started
 
@@ -183,12 +172,12 @@ Ensure you have the following installed on your local development machine:
         ```
     * Create a `.env` file in the `frontend` directory and add the backend URL:
         ```env
-        VITE_BACKEND_URL=http://localhost:3000
+        VITE_API_URL=http://localhost:3000
         ```
 4.  **Run the application**
     * Start the backend server (from the `/backend` directory):
         ```sh
-        npm run dev
+        nodemon server.js
         ```
     * Start the frontend server (from the `/frontend` directory):
         ```sh
@@ -197,7 +186,7 @@ Ensure you have the following installed on your local development machine:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## Usage
 
@@ -209,7 +198,7 @@ Once running, the application allows users to:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## Contributing
 
@@ -226,19 +215,31 @@ Don't forget to give the project a star! ⭐ Thanks!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**. See the `LICENSE` file for more information.
+
+<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png" alt="CC BY-NC-ND 4.0 License" width="88" height="31">
+</a>
+
+This means you are free to:
+- **Share** — copy and redistribute the material in any medium or format for non-commercial purposes.
+
+Under the following terms:
+- **Attribution** — You must give appropriate credit.
+- **NonCommercial** — You may not use the material for commercial purposes.
+- **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+Shivanshu - [elysm1961@gmail.com](mailto:elysm1961@gmail.com)
 
 Project Link: [https://github.com/Shivanshu0915/fixit](https://github.com/Shivanshu0915/fixit)
 
