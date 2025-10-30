@@ -239,7 +239,8 @@ Under the following terms:
 
 ## Contact
 
-Shivanshu - [elysm1961@gmail.com](mailto:elysm1961@gmail.com)
+Saurabh Kumar Singh - [saurabh735565@gmail.com](mailto:saurabh735565@gmail.com)
+Shivanshu Pathak- [elysm1961@gmail.com](mailto:elysm1961@gmail.com)
 
 Project Link: [https://github.com/Shivanshu0915/fixit](https://github.com/Shivanshu0915/fixit)
 
