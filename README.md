@@ -16,7 +16,12 @@
     A seamless hostel and mess complaint management platform for colleges and universities.
     <br />
     <br />
-    <a href="https://fixit-fpvg.onrender.com/" ><strong>View Demo »</strong></a>
+    <a href="https://fixit-fpvg.onrender.com/"><strong>Live Demo »</strong></a>
+    <br />
+    <br />
+    <strong>Demo Credentials</strong><br/>
+    User → shivanshu.20233267@mnnit.ac.in | shivanshu <br/>
+    Admin → shivanshu.20233267@mnnit.ac.in | shivanshu
     <br />
     <br />
     <a href="https://github.com/Shivanshu0915/fixit/issues">Report Bug</a>
@@ -239,7 +244,7 @@ Under the following terms:
 
 ## Contact
 
-Saurabh Kumar Singh - [saurabh735565@gmail.com](mailto:saurabh735565@gmail.com)
+Saurabh Kumar Singh - [saurabh735565@gmail.com](mailto:saurabh735565@gmail.com)  
 Shivanshu Pathak- [elysm1961@gmail.com](mailto:elysm1961@gmail.com)
 
 Project Link: [https://github.com/Shivanshu0915/fixit](https://github.com/Shivanshu0915/fixit)
