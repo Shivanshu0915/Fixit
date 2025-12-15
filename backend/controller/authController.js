@@ -3,6 +3,7 @@ const { UserSignupValidate, AdminSignupValidate } = require("../utils/AuthZods")
 const { sendOtpEmail } = require("../utils/sendOtp");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { sendOtpEmail2 } = require("../utils/sendOtp2");
 require('dotenv').config();
 
 const login = async (req, res) => {
@@ -19,7 +20,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        // 🔥 Check if JWT secrets are defined
+        // Check if JWT secrets are defined
         if (!process.env.ACCESS_JWT_TOKEN_SECRET || !process.env.REFRESH_JWT_TOKEN_SECRET) {
             console.error("JWT secrets are missing!");
             return res.status(500).json({ message: "Server error: Missing JWT secrets" });
@@ -141,8 +142,16 @@ const requestOtp = async (req, res) => {
     const expiresAt = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
 
     otpStore.set(email, { otp, expiresAt, userData: signupData });
-    await sendOtpEmail(email, otp);
-    res.json({ msg: "OTP sent successfully! Please verify." });
+    // await sendOtpEmail(email, otp);
+    try {
+        await sendOtpEmail2(email, otp);
+        return res.json({ msg: "OTP sent successfully! Please verify." });
+    } catch (err) {
+        otpStore.delete(email); // rollback OTP if email failed
+        return res.status(500).json({
+            msg: "Failed to send OTP. Please try again later."
+        });
+    }
 };
 
 
@@ -185,8 +194,15 @@ const resendOtp = async (req, res) => {
     const expiresAt = Date.now() + 5 * 60 * 1000; // Reset expiration time
 
     otpStore.set(email, { otp, expiresAt, userData: otpStore.get(email).userData });
-    await sendOtpEmail(email, otp);
-    res.json({ msg: "New OTP sent successfully!" });
+    // await sendOtpEmail(email, otp);
+    try {
+        await sendOtpEmail2(email, otp);
+        return res.json({ msg: "New OTP sent successfully!" });
+    } catch (err) {
+        return res.status(500).json({
+            msg: "Failed to resend OTP. Please try again later."
+        });
+    }
 };
 
 const getInfo = async (req, res) => {
