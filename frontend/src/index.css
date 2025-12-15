@@ -255,3 +255,18 @@
     border: 1px solid var(--color-dashtext);
   }
 }
+
+/* -------------------- FixIt App Loader -------------------- */
+
+@keyframes fixit-loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.animate-fixit-loading {
+  animation: fixit-loading-bar 1.5s infinite linear;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAccessToken } from "./RefreshToken";
+import AppLoader from "../../routes/AppLoader";
 
 const RedirectHandler = () => {
     const navigate = useNavigate();
@@ -25,7 +26,8 @@ const RedirectHandler = () => {
         checkToken();
     }, [navigate]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading)    return <AppLoader />;
+    
 
     return null; // If no valid token, render Home page normally
 };
