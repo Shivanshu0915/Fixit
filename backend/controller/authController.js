@@ -142,8 +142,9 @@ const requestOtp = async (req, res) => {
     const expiresAt = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
 
     otpStore.set(email, { otp, expiresAt, userData: signupData });
-    // await sendOtpEmail(email, otp);
+    
     try {
+        // await sendOtpEmail(email, otp);
         await sendOtpEmail2(email, otp);
         return res.json({ msg: "OTP sent successfully! Please verify." });
     } catch (err) {

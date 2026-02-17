@@ -63,14 +63,3 @@ export function StudentMain(){
     )
 }
 
-// const Content = ()=>{
-//     return(
-//         <div className="h-[calc(100vh-60px)] flex">
-//             <Sidebar menuItems={menuItems}></Sidebar> 
-//             <Routes>
-//                 <Route index element={<StuMidFirst/>} />
-//                 <Route path="file-complaint" element={<FileComplaint/>} />
-//             </Routes>
-//         </div>
-//     )
-// }

@@ -16,7 +16,12 @@
     A seamless hostel and mess complaint management platform for colleges and universities.
     <br />
     <br />
-    <a href="https://fixit-fpvg.onrender.com/"><strong>Live Demo »</strong></a>
+     <a href="https://fixit-fpvg.onrender.com/">
+      <img src="https://img.shields.io/badge/Live-Demo-green?style=for-the-badge" />
+    </a>
+    <a href="https://youtu.be/PPlCbUlSRHE">
+      <img src="https://img.shields.io/badge/Video-Demo-red?style=for-the-badge" />
+    </a>
     <br />
     <br />
     <strong>Demo Credentials</strong><br/>
@@ -98,7 +103,9 @@ This project is built with a modern, scalable, and robust tech stack.
 
 ### Video Demo
 
-[![FixIt Video Demo](assets/screenshots/dashboard.png)](https://www.youtube.com/watch?v=your_video_id)
+Watch the full live walkthrough of FixIt — features, workflows, and dashboards.
+
+[![FixIt Video Demo](assets/screenshots/fixit-thumbnail2.jpg)](https://youtu.be/PPlCbUlSRHE)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
